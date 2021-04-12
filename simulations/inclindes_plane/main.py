@@ -10,7 +10,7 @@ class Slope:
         self.angle = math.radians(45)
 
     def put_sphere(self, sphere):
-        sphere.initialize_object(self, )
+        pass
 
 
 class Object:
@@ -34,8 +34,9 @@ class Object:
         self.a = 0
         self.epsilon = 0
         self.k = 0
+        self.slope = Slope(20)
 
-    def initialize_object(self, slope, calculate_dsx, calculate_dv,
+    def initialize_object(self, calculate_dsx, calculate_dv,
                           calculate_x_cm_r, calculate_y_cm_r, calculate_db,
                           calculate_a, calculate_epsilon, calculate_do,
                           calculate_xp, calculate_yp, calculate_x, calculate_y):
@@ -50,7 +51,7 @@ class Object:
         self.xp = calculate_xp()
         self.yp = calculate_yp()
 
-
+    def 
 
 
 
