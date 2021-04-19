@@ -78,7 +78,12 @@ class Perceptron:
         print('accuracy: ', 1 - errors / len(input_set))
 
     def single_predict(self, input_vector):
-        pass
+        """input vector should be the same as in training set without decision argument"""
+        for i in range(len(input_vector)):
+            input_vector[i] = float(input_vector[i])
+        prediction = self._predict_output_for_one_row(input_vector)
+        prediction_output = self._output_name_for_one if prediction == 1 else self._output_name_for_zero
+        print('for input:' + str(input_vector) + ' prediction is: ' + prediction_output)
 
     def __delta_rule(self):
         __new_weights = _init_weight_list(
