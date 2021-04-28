@@ -1,0 +1,107 @@
+Paralotnia, zwana też glajtem (ang. paraglide) lub parapentem – rodzaj szybowca o miękkim płacie nośnym (miękkopłat). Wywodzi się w prostej linii od tzw. spadochronów szybujących, od których odróżnia się dużo większą doskonałością i sterownością. Używana jest głównie do celów rekreacyjnych i sportowych (paralotniarstwo).
+
+
+== Budowa paralotni ==
+Elementem nośnym paralotni jest skrzydło. Do niego za pomocą linek i taśm nośnych podczepiona jest uprząż dla pilota.
+W skład typowego zestawu wchodzą:
+
+skrzydło,
+uprząż,
+system RSH – Ratowniczy System Hamujący, tzw. spadochron zapasowy,
+karabinki do połączenia uprzęży z paralotnią,
+kask ochronny,
+zestaw dodatkowych przyrządów – wariometr, GPS, kompas, radiotelefon, plecak.Masa całego zestawu dochodzi do 20 kg, chociaż na potrzeby tzw. paraalpinizmu (wspinaczka połączona ze zlotem na paralotni) produkowane są zestawy o masie nieprzekraczającej 5 kg.
+
+
+=== Skrzydło ===
+
+Skrzydło paralotni jest konstrukcją komorową, która pod ciśnieniem przepływającego przez nią powietrza uzyskuje profil aerodynamiczny. Jego powierzchnia w rozłożeniu wynosi zazwyczaj od ok. 20 do ponad 30 m² (wersje dwuosobowe do 44 m²). Masa współczesnego skrzydła to ok. 4-8 kg (do 10 kg w wersji dwuosobowej).
+Na dolnej części krawędzi natarcia znajdują się wloty, przez które pod wpływem prędkości postępowej dostaje się powietrze. Jego zwiększone ciśnienie powoduje wypełnienie płata i uzyskanie profilu aerodynamicznego. Bardzo istotne dla prawidłowej pracy skrzydła jest, by nie zwalniało poniżej prędkości minimalnej. Z powodu zbyt niskiego ciśnienia następuje wtedy deformacja profilu i utrata siły nośnej.
+W celu łatwiejszego napełniania się płata powietrzem, w żebrach znajdują się otwory umożliwiające przepływ pomiędzy komorami. Dzięki nim nawet znacznie podwinięte skrzydło jest w stanie odzyskać właściwy kształt.
+Z dolną częścią żeber związane są linki nośne, a z krawędzią spływu – sterówki.
+
+
+=== Linki i taśmy nośne ===
+
+Linki umocowane są do uprzęży za pomocą taśm nośnych w dwóch punktach, co ułatwia sterowanie, natomiast do skrzydła w kilkudziesięciu, dzięki czemu siły są równomiernie rozłożone i utrzymują właściwy kształt płata. Łączna długość linek dochodzi do 500 m. Średnica zazwyczaj zawiera się w zakresie 1-2 mm.
+
+
+=== Sterówki ===
+Sterówki umocowane są do krawędzi spływu skrzydła. W odróżnieniu od linek nośnych, ich dolne końce nie są przymocowane nieruchomo do taśm nośnych, lecz przeprowadzone przez bloczek i zakończone uchwytami (po jednym do każdej z rąk pilota). Poprzez zaciąganie sterówki następuje zmiana kąta natarcia jednej z połówek skrzydła powodująca skręcanie paralotni w wybranym kierunku.
+
+
+=== Przyspieszacz (speedsystem) ===
+
+Wiele paralotni wyposażonych jest w przyspieszacz. Do belki znajdującej się pod nogami pilota przymocowane są dwie linki, których zaciągnięcie skraca przednie linki nośne skrzydła, zmniejszając kąt natarcia. Paralotnia osiąga wtedy większą prędkość postępową, jednocześnie opadając szybciej.
+
+
+=== Uprząż ===
+Uprząż paralotniowa przypomina kształtem plecak. Wyposażona jest w system taśm, które zabezpieczają pilota przed wypadnięciem. Najważniejsze z nich są trzymające pilota taśmy udowe oraz taśma piersiowa, utrzymująca odstęp pomiędzy taśmami nośnymi skrzydła.
+Uprząż łączy się z taśmami skrzydła za pomocą dwóch karabinków. Pod siedziskiem znajduje się deska (rzadziej płyta z tworzywa sztucznego), która pozwala pilotowi poprzez balans ciałem nierównomiernie obciążać połówki skrzydła i w ten sposób sterować paralotnią.
+W dolnej i plecowej części uprzęży (w niektórych – również po bokach) znajduje się protektor, zabezpieczający pilota przed urazami w razie upadku z niewielkiej wysokości (np. przy nieudanym lądowaniu).
+Większość uprzęży wyposażona jest w specjalny pojemnik na spadochron zapasowy. Zazwyczaj znajduje się on bezpośrednio pod siedzeniem. W modelach pozbawionych tego pojemnika, spadochron przewozi się w specjalnej torbie przymocowanej z przodu pomiędzy karabinkami, zwanej kontenerem.
+
+
+=== Napęd ===
+
+Paralotnia może zostać wyposażona w napęd spalinowy. Jest to zazwyczaj silnik dwusuwowy ze śmigłem obudowanym w kosz, zamocowany na plecach pilota. Ze względu na znaczną wagę napędu i inny rozkład sił niż przy swobodnym lataniu, paralotnie przeznaczone do lotów z napędem mają nieznacznie odmienną konstrukcję.
+Po domontowaniu do skrzydła od paralotni (odpowiedniej wielkości) wózka z napędem otrzymujemy pojazd latający nazywany motoparalotnią (paraplanem).
+
+
+=== System hamujący (spadochron zapasowy) ===
+Ratowniczy system hamujący jest obowiązkowym wyposażeniem paralotni. Składa się z pojedynczego spadochronu klasycznego (okrągłego) lub – rzadziej – systemu kilku połączonych spadochronów. Przechowywany jest w uprzęży lub osobnej torbie przymocowanej do taśmy krzyżakowej, z uchwytem znajdującym się w łatwo dostępnym miejscu, tak by w razie awarii lub utraty kontroli nad paralotnią mógł być natychmiast użyty przez pilota.
+
+
+=== Dodatkowe wyposażenie ===
+W zależności od rodzaju wykonywanych lotów piloci paralotni korzystają z dodatkowych akcesoriów, takich jak krótkofalówka, GPS czy wariometr.
+
+
+== Sterowanie ==
+Sterowanie paralotni opiera się na asymetrycznej deformacji skrzydła i zmianie sił działających na jego połowy. Można tego dokonać na dwa sposoby: zaciąganiem sterówki oraz przez balans ciałem.
+
+
+=== Sterówki ===
+Zaciągnięcie jednej ze sterówek powoduje skierowanie krawędzi spływu ku dołowi i zwiększa m.in. współczynnik oporu jednej strony.
+W efekcie paralotnia skręca w kierunku zaciągniętej sterówki.
+
+
+=== Balans ciałem ===
+Przechylenie ciała pilota w bok powoduje przesunięcie środka ciężkości układu i w efekcie zakręt w stronę przechylenia.
+W taki sam sposób steruje się lotnią.
+
+
+== Osiągi ==
+Wartość maksymalnej, rzeczywistej doskonałości (proporcja składowej poziomej prędkości do składowej pionowej) współczesnych paralotni szkolnych wynosi ponad 6, rekreacyjnych 7-8, a wyczynowych do 10. Prędkości opadania (minimalne) są rzędu 1 m/s i mniej (typowo 1,1-1,2 m/s). Osiągane prędkości postępowe są w granicach od 20 (maksymalnie przyhamowane skrzydło, na granicy przeciągnięcia) do ponad 60 km/h.
+
+
+== Latanie z użyciem paralotni (paralotniarstwo) ==
+Paralotnia wykorzystywana jest w lotach swobodnych (termicznych, żaglowych, klifowych), a także z napędem: PPG (ang. Powered ParaGlider) - napęd montowany do uprzęży, PPGG - motoparalotnia (z wózkiem).
+
+
+== Historia ==
+W 1961 francuski inżynier Pierre Lemoigne skonstruował spadochron z wcięciami po bokach i z tyłu, dzięki czemu można było holować go w powietrzu, a także kierować jego lotem. Urządzenie otrzymało nazwę Para-Commander i dało początek sportowi znanemu jako parasailing.
+W 1964 Amerykanin Domina Jalbert opracował pierwszy spadochron komorowy (parafoil). Wynalazek ten zrewolucjonizował spadochroniarstwo, stając się protoplastą współczesnych spadochronów szybujących.
+Równolegle trwały badania prowadzone przez NASA nad spadochronami dla kosmicznych kapsuł ratunkowych. Ich owocem było szybujące skrzydło autorstwa Davida Barisha. Po testach w 1965 wynalazca próbował promować zloty z górskich stoków jako letnią formę rekreacji w ośrodkach narciarskich. Nie spotkało się to ze znaczącym zainteresowaniem.
+Po lekturze artykułu w magazynie Parachute Manual trzech Francuzów – Jean-Claude Bétemps, André Bohn i Gérard Bosson – rozpoczęło eksperymenty ze spadochronem szybującym na górze Pointe du Pertuiset, w 1978. Próby zaowocowały stumetrowym zlotem, zakończonym na boisku piłkarskim. Moment ten uważa się za narodziny paralotniarstwa.
+Od tego czasu rozwój paralotni potoczył się własnym torem. Kolejne konstrukcje coraz bardziej odbiegały kształtem od prostokątnego spadochronu. Największy rozkwit popularności oraz odkryć w dziedzinie budowy skrzydła przypada na lata 90. XX wieku.
+W 1998 NASA przeprowadziła próby statku powrotnego X-38 wyposażonego w specjalną paralotnię, pozwalającą na kontrolowane lądowanie na powierzchni Ziemi.
+W ostatnim czasie opracowano kilka nowych rodzajów paralotni:
+1. górskie – przeznaczone dla osób wspinających się w górach; paralotnia jest mała (wraz z uprzężą waży nawet niecałe 3 kg) i pozwala dokonywać zlotów ze szczytów.
+2. do latania z napędem (PPG) – przeznaczone do latania ze specjalnym silnikiem zakładanym przez pilota na plecy; w ostatnich latach opracowano dla tych paralotni specjalny profil samostateczny stabilizujący skrzydło wraz ze wzrostem prędkości; jednym z czołowych producentów tego typu skrzydeł jest polska firma Dudek Paragliders, która przyczyniła się do opracowania profilu.
+3. do zjeżdżania na nartach – małe skrzydła umożliwiające krótkie loty nad przeszkodami.
+4. do wózków z napędem – duże skrzydła pozwalające unieść ciężkie wózki z silnikiem.
+
+
+== Zobacz też ==
+lotnia
+lotnictwo
+
+
+== Bibliografia ==
+Piotr Dudek, Zbigniew Włodarczak, 2006, Paralotniarstwo, Bydgoszcz, Wyd. ARETE, ​ISBN 83-915997-1-X​
+Mark Wade: X-38 (ang.).
+NASA Dryden Flight Research Center: Fact Sheets X-38 (ang.).
+
+
+== Linki zewnętrzne ==
+Strona grupy pl.rec.paralotnie

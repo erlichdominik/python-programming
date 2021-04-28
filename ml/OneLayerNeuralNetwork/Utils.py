@@ -27,11 +27,11 @@ def __get_att_from_input_vector(input_vec: List) -> Any:
     return input_vec[:-1]
 
 
-def _transform_str_to_vector_with_da(text: str, name_of_file: str) -> List:
+def _transform_str_to_vector_with_da(text: str, decision_attribute: str) -> List:
     """
 
     :param text: text to transform
-    :param name_of_file: name of decision attribute
+    :param decision_attribute: name of decision attribute
     :return: list with histogram of letters with decision attribute at the end
     """
     text = _strip_accents(text).lower()
@@ -39,8 +39,9 @@ def _transform_str_to_vector_with_da(text: str, name_of_file: str) -> List:
     c = collections.Counter(text)
     for letter in string.ascii_lowercase:
         freq_list.append(c[letter])
-    freq_list.append(name_of_file)
+    freq_list.append(decision_attribute)
     return freq_list
+
 
 def _transform_txt_to_vector_without_da(text: str) -> List:
     """
@@ -66,8 +67,10 @@ def _strip_accents(s: str) -> str:
                    if unicodedata.category(c) != 'Mn')
 
 
+
+
 test = [[1, 2, 3, 4, 'xd'], [13, 321, 321, 321, 'lol'], [123, 321, 32112, 213, 'xd'], [1123, 321, 321, 321, 'wtf']]
 
-print(_extract_decision_attributes(test))
+#print(_extract_decision_attributes(test))
 
 # print(*test[0][-1:])

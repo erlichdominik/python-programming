@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\NetworkImpl.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Utils.py">
           <value>
             <Attribute>
@@ -25,6 +32,13 @@
           </value>
         </entry>
         <entry key="\perceptron\Perceptron.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\perceptron\utils.py">
           <value>
             <Attribute>
               <option name="separator" value="," />

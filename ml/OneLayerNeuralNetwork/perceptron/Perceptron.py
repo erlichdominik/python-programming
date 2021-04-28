@@ -1,6 +1,6 @@
 from typing import List
 
-from utils import _get_matrix, _init_weight_list, _get_len_of_weights, _get_decision_attribute
+from .utils import _get_matrix, _init_weight_list, _get_len_of_weights, _get_decision_attribute
 
 
 class Perceptron:
@@ -16,7 +16,7 @@ class Perceptron:
             _get_len_of_weights(input_vector))
         self._threshold: float = 0.0
         self._learning_rate: float = learning_rate
-        self._output_name_for_one: str = ""
+        self.output_name_for_one: str = ""
         self._output_name_for_zero: str = ""
 
     def set_threshold(self, threshold) -> None:
@@ -27,13 +27,13 @@ class Perceptron:
 
     def set_output_names(self, *, name_for_zero, name_for_one) -> None:
         self._output_name_for_zero = name_for_zero
-        self._output_name_for_one = name_for_one
+        self.output_name_for_one = name_for_one
 
     def set_output_name_for_zero(self, name) -> None:
         self._output_name_for_zero = name
 
     def set_output_name_for_one(self, name) -> None:
-        self._output_name_for_one = name
+        self.output_name_for_one = name
 
     def _predict_output_for_one_row(self, vec) -> float:
         """predict output for single vector
@@ -70,8 +70,8 @@ class Perceptron:
         errors = 0
         for row in input_set:
             prediction = self._predict_output_for_one_row(_get_matrix(row))
-            desired_output = 1 if _get_decision_attribute(row) == self._output_name_for_one else 0
-            prediction_output = self._output_name_for_one if prediction == 1 else self._output_name_for_zero
+            desired_output = 1 if _get_decision_attribute(row) == self.output_name_for_one else 0
+            prediction_output = self.output_name_for_one if prediction == 1 else self._output_name_for_zero
             print('for: ' + str(_get_matrix(row)) + ' prediction is: ' +
                   prediction_output, ' true output ' +
                   _get_decision_attribute(row))
@@ -84,7 +84,7 @@ class Perceptron:
         for i in range(len(input_vector)):
             input_vector[i] = float(input_vector[i])
         prediction = self._predict_output_for_one_row(input_vector)
-        prediction_output = self._output_name_for_one if prediction == 1 else self._output_name_for_zero
+        prediction_output = self.output_name_for_one if prediction == 1 else self._output_name_for_zero
         print('for input:' + str(input_vector) + ' prediction is: ' + prediction_output)
 
     def __delta_rule(self) -> None:
@@ -95,7 +95,7 @@ class Perceptron:
         for row in self._input_vec:
             # for every input vector calculate prediction and desired output
             prediction = self._predict_output_for_one_row(_get_matrix(row))
-            desired_output = 1.0 if _get_decision_attribute(row) == self._output_name_for_one else 0.0
+            desired_output = 1.0 if _get_decision_attribute(row) == self.output_name_for_one else 0.0
             if prediction != desired_output:
                 # calculate new weights and threshold
                 __new_weights = self.__train_weights(_get_matrix(row), desired_output, prediction)

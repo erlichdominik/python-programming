@@ -11,13 +11,13 @@ txt = 'text HisTogramu'.lower()
 c = collections.Counter(txt)
 
 freq_list = []
-
+"""
 for letter in string.ascii_lowercase:
     print('{}: {}'.format(letter, c[letter]))
     freq_list.append(c[letter])
 
 print(freq_list)
-
+"""
 # lol = Network()
 
 

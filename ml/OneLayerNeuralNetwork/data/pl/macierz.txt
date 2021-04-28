@@ -1,0 +1,7032 @@
+Macierz – układ liczb, symboli lub wyrażeń zapisanych w postaci prostokątnej tablicy. Choć słowo „macierz” oznacza najczęściej macierz dwuwskaźnikową, to możliwe jest rozpatrywanie macierzy wielowskaźnikowych (zob. notacja wielowskaźnikowa). Macierze jednowskaźnikowe nazywa się często wektorami wierszowymi lub kolumnowymi, co wynika z zastosowań macierzy w algebrze liniowej. W informatyce macierze modeluje się zwykle za pomocą (najczęściej dwuwymiarowych) tablic.
+Macierze wprowadza się często jako sposób skondensowanego zapisu układów równań liniowych, co ma na celu wyeliminowanie powtarzających się elementów standardowej notacji układów równań tego rodzaju z wieloma niewiadomymi. Same układy pojawiają się wprost podczas algebraizacji zagadnień geometrycznych (równania liniowe parametryzujące punkty, proste, płaszczyzny itd.). Wyrosłym na tym gruncie, podstawowym przeznaczeniem macierzy jest jednak sformułowanie spójnego, a zarazem zwartego sposobu zapisu pojęć i twierdzeń algebry liniowej, a więc przede wszystkim opisu przekształceń liniowych między dwoma przestrzeniami liniowymi nad wspólnym ciałem (skończeniewymiarowych, z ustalonymi bazami), czy form dwuliniowych na przestrzeni liniowej (skończonego wymiaru z wybraną bazą). Nieomalże wszystkie inne zastosowania wynikają z tych interpretacji – macierz Jacobiego, macierz Hessego, czy gradient obecne w analizie wielowymiarowej to macierze pochodnych (przedstawiane w ustalonych bazach, zwykle standardowych); podobnie ma się rzecz z wieloma możliwościami rozkładu macierzy na iloczyn macierzy o ustalonych własnościach – odpowiadają one złożeniom odpowiednich przekształceń. Macierze bada się również niezależnie od jakichkolwiek zastosowań (rozwijając w ten sposób dostępny aparat pojęciowy); samodzielny dział matematyki im poświęcony nazywa się teorią macierzy.
+Ponieważ macierze można traktować jak („długie”) wektory (najczęściej nad pewnym ciałem, takim jak np. liczby rzeczywiste, czy liczby zespolone), to w wielu przypadkach możliwe jest wprowadzenie przeróżnych struktur algebraicznych, czy topologicznych na różnego rodzaju przestrzeniach macierzy, co wynika stąd, iż zbiór macierzy ustalonego typu tworzy skończeniewymiarową przestrzeń liniową z działaniami na macierzach (traktowanych jak wektory, tzn. wprowadzonymi „po wskaźnikach”) – każda z tych przestrzeni ma identyczną strukturę z przestrzenią współrzędnych nad tym ciałem. Dla macierzy nad ciałami liczb rzeczywistych, czy zespolonych można przykładowo wprowadzić strukturę przestrzeni euklidesowej z jej naturalnymi strukturami, a nawet pójść krok dalej: wprowadzić strukturę algebry Liego, co w dalszym stopniu zwiększa liczbę zastosowań teorii macierzy.
+W ogólności struktura algebraiczna w zbiorze współczynników umożliwiająca wprowadzenie działań algebraicznych na macierzach może być pierścieniem przemiennym, a nawet półpierścieniem; w teorii reprezentacji wykorzystuje się możliwość zanurzenia grup w przestrzeniach liniowych, a więc użycia teorii macierzy w teorii grup. Dzięki temu macierze znalazły zastosowanie również w kryptografii, rachunku prawdopodobieństwa, czy elektronice – część z nich omówiono w Uogólnieniach. Interpretacje geometryczne wykorzystywane są również w grafice komputerowej do reprezentowania przekształceń świata przedstawionego w trzech wymiarach i odwzorowywania go na dwuwymiarowym ekranie. Źródłem tych zastosowań jest możliwość zwartego przedstawienia układów równań liniowych reprezentujących wirtualne obiekty, jak i sposoby ich przekształcania oraz łatwość odczytu ich własności, rozwiązań itp.
+W artykule zakłada się, że wszystkie macierze mają współczynniki z ustalonego ciała (liczbowego) 
+  
+    
+      
+        K
+        ,
+      
+    
+    {\displaystyle K,}
+   o ile nie zaznaczono inaczej.
+
+
+== Wprowadzenie i oznaczenia ==
+
+Poziomy układ elementów znajdujących się w jednej linii nazywa się wierszem, a pionowy – kolumną macierzy. Dane wpisane w macierz nazywa się jej elementami, współczynnikami lub wyrazami; każdy element można jednoznacznie zidentyfikować, podając jego wskaźniki lub indeksy – zwykle w tej kolejności: numer wiersza i kolumny macierzy, w której stoi. Para złożona z liczby wierszy i kolumn nazywana jest typem macierzy – często liczby te oddziela się znakiem 
+  
+    
+      
+        ×
+        .
+      
+    
+    {\displaystyle \times .}
+   Wyrazy macierzy otacza się przeważnie nawiasami okrągłymi lub kwadratowymi (w starszych pozycjach można znaleźć podwójne kreski, co dziś może być źródłem pomyłek, np. z wartością bezwzględną wyznacznika bądź normą macierzy; zob. Ujęcie algebraiczne i uogólnienia); stąd napisy
+
+  
+    
+      
+        
+          
+            [
+            
+              
+                
+                  9
+                
+                
+                  8
+                
+                
+                  7
+                
+              
+              
+                
+                  1
+                
+                
+                  2
+                
+                
+                  7
+                
+              
+              
+                
+                  4
+                
+                
+                  9
+                
+                
+                  2
+                
+              
+              
+                
+                  6
+                
+                
+                  0
+                
+                
+                  5
+                
+              
+            
+            ]
+          
+        
+        ,
+        
+        
+          
+            (
+            
+              
+                
+                  9
+                
+                
+                  8
+                
+                
+                  7
+                
+              
+              
+                
+                  1
+                
+                
+                  2
+                
+                
+                  7
+                
+              
+              
+                
+                  4
+                
+                
+                  9
+                
+                
+                  2
+                
+              
+              
+                
+                  6
+                
+                
+                  0
+                
+                
+                  5
+                
+              
+            
+            )
+          
+        
+      
+    
+    {\displaystyle {\begin{bmatrix}9&8&7\\1&2&7\\4&9&2\\6&0&5\end{bmatrix}},\qquad {\begin{pmatrix}9&8&7\\1&2&7\\4&9&2\\6&0&5\end{pmatrix}}}
+  oznaczają te same macierze – w dalszej części artykułu stosowane będą nawiasy kwadratowe. W ten sposób powyższa macierz złożona jest z 4 wierszy i 3 kolumn, tzn. jest typu 
+  
+    
+      
+        4
+        ×
+        3.
+      
+    
+    {\displaystyle 4\times 3.}
+   Liczba 
+  
+    
+      
+        9
+      
+    
+    {\displaystyle 9}
+   występuje w tej macierzy dwukrotnie: na przecięciu pierwszego wiersza i pierwszej kolumny oraz na przecięciu trzeciego wiersza i drugiej kolumny – innymi słowy element macierzy o wskaźnikach 
+  
+    
+      
+        1
+        ,
+        1
+      
+    
+    {\displaystyle 1,1}
+   lub 
+  
+    
+      
+        3
+        ,
+        2
+      
+    
+    {\displaystyle 3,2}
+   to 
+  
+    
+      
+        9.
+      
+    
+    {\displaystyle 9.}
+   Ostatnia (trzecia) kolumna składa się z elementów 
+  
+    
+      
+        7
+        ,
+        7
+        ,
+        2
+        ,
+        5
+      
+    
+    {\displaystyle 7,7,2,5}
+   w tej właśnie kolejności.
+Nie ma ogólnie przyjętej metody oznaczania macierzy, przy czym trendy podlegały zmianom w czasie. Sposób oznaczania typu nie jest ustalony – zwykle bywa zapisywany oddzielnie (jak w tym artykule). W artykule przyjęto konwencję stosowania tych samych liter alfabetu łacińskiego na oznaczenie macierzy i jej elementów – dużych (pogrubionych, prostych) do oznaczenia macierzy i małych (pochylonych), o ile są skalarami, ze wskaźnikami w indeksie dolnym (zwykle, choć spotyka się oznaczenia ze wskaźnikami w indeksie górnym albo po jednym w każdym z indeksów; wśród innych sposobów zapisu można wymienić również notację funkcyjną, zob. Definicja) na oznaczenie jej elementów. Tak więc elementy macierzy oznaczonej literą 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   będą zapisywane symbolicznie jako 
+  
+    
+      
+        
+          a
+          
+            i
+            ,
+            j
+          
+        
+        ,
+      
+    
+    {\displaystyle a_{i,j},}
+   gdzie 
+  
+    
+      
+        i
+        ,
+        j
+      
+    
+    {\displaystyle i,j}
+   jest wskaźnikiem elementu leżącego na przecięciu 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  -tego wiersza i 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+  -tej kolumny, lub jeśli nie wprowadza to niejasności, 
+  
+    
+      
+        
+          a
+          
+            i
+            
+            j
+          
+        
+      
+    
+    {\displaystyle a_{i\,j}}
+   lub po prostu 
+  
+    
+      
+        
+          a
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle a_{ij}}
+   – taki element (współczynnik, wyraz) nazywa ogólnym. Macierz złożoną z elementów 
+  
+    
+      
+        
+          a
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle a_{ij}}
+   oznacza się, otaczając wyraz ogólny nawiasami okrągłymi, 
+  
+    
+      
+        (
+        
+          a
+          
+            i
+            j
+          
+        
+        )
+        ,
+      
+    
+    {\displaystyle (a_{ij}),}
+   lub (jak w tym artykule) kwadratowymi, 
+  
+    
+      
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        ]
+        .
+      
+    
+    {\displaystyle [a_{ij}].}
+   W ten sposób macierz 
+  
+    
+      
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle [a_{ij}]}
+   będzie oznaczana 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ,}
+   tzn.
+
+  
+    
+      
+        
+          A
+        
+        =
+        
+          
+            [
+            
+              
+                
+                  
+                    a
+                    
+                      11
+                    
+                  
+                
+                
+                  
+                    a
+                    
+                      12
+                    
+                  
+                
+                
+                  …
+                
+                
+                  
+                    a
+                    
+                      1
+                      m
+                    
+                  
+                
+              
+              
+                
+                  
+                    a
+                    
+                      21
+                    
+                  
+                
+                
+                  
+                    a
+                    
+                      22
+                    
+                  
+                
+                
+                  …
+                
+                
+                  
+                    a
+                    
+                      2
+                      m
+                    
+                  
+                
+              
+              
+                
+                  
+                    a
+                    
+                      31
+                    
+                  
+                
+                
+                  
+                    a
+                    
+                      32
+                    
+                  
+                
+                
+                  …
+                
+                
+                  
+                    a
+                    
+                      3
+                      m
+                    
+                  
+                
+              
+              
+                
+                  ⋮
+                
+                
+                  ⋮
+                
+                
+                  ⋱
+                
+                
+                  ⋮
+                
+              
+              
+                
+                  
+                    a
+                    
+                      n
+                      1
+                    
+                  
+                
+                
+                  
+                    a
+                    
+                      n
+                      2
+                    
+                  
+                
+                
+                  …
+                
+                
+                  
+                    a
+                    
+                      n
+                      m
+                    
+                  
+                
+              
+            
+            ]
+          
+        
+        .
+      
+    
+    {\displaystyle \mathbf {A} ={\begin{bmatrix}a_{11}&a_{12}&\dots &a_{1m}\\a_{21}&a_{22}&\dots &a_{2m}\\a_{31}&a_{32}&\dots &a_{3m}\\\vdots &\vdots &\ddots &\vdots \\a_{n1}&a_{n2}&\dots &a_{nm}\end{bmatrix}}.}
+  Macierz o liczbie kolumn równej liczbie wierszy nazywa się kwadratową – wspomnianą wspólną liczbę kolumn i wierszy nazywa się wtedy stopniem tej macierzy; macierze nie będące kwadratowymi nazywa się dla wyróżnienia prostokątnymi. Jeśli macierz jest kwadratowa, to ciąg elementów o równych wskaźnikach wiersza i kolumny począwszy od jeden do jej stopnia nazywa się główną przekątną (główną diagonalą lub często po prostu przekątną bądź diagonalą) macierzy kwadratowej; przekątne leżące nad lub pod główną przekątną nazywa się odpowiednio nadprzekątną lub podprzekątną macierzy; przekątną, której wiersz rośnie od pierwszego do ostatniego, a kolumna maleje od ostatniej do pierwszej nazywa czasem przeciwprzekątną lub antyprzekątną. Pojęcia te uogólnia się niekiedy na dowolne macierze prostokątne.
+Dla macierzy
+
+  
+    
+      
+        
+          M
+        
+        =
+        
+          
+            [
+            
+              
+                
+                  0
+                
+                
+                  2
+                
+                
+                  1
+                
+              
+              
+                
+                  1
+                
+                
+                  6
+                
+                
+                  4
+                
+              
+              
+                
+                  5
+                
+                
+                  0
+                
+                
+                  3
+                
+              
+            
+            ]
+          
+        
+      
+    
+    {\displaystyle \mathbf {M} ={\begin{bmatrix}0&2&1\\1&6&4\\5&0&3\end{bmatrix}}}
+  stopnia 
+  
+    
+      
+        3
+      
+    
+    {\displaystyle 3}
+   jej główną przekątną jest ciąg elementów 
+  
+    
+      
+        
+          m
+          
+            11
+          
+        
+        ,
+        
+          m
+          
+            22
+          
+        
+        ,
+        
+          m
+          
+            33
+          
+        
+      
+    
+    {\displaystyle m_{11},m_{22},m_{33}}
+   równych odpowiednio 
+  
+    
+      
+        0
+        ,
+        6
+        ,
+        3
+        ,
+      
+    
+    {\displaystyle 0,6,3,}
+   a antyprzekątną – ciąg złożony z elementów 
+  
+    
+      
+        
+          m
+          
+            13
+          
+        
+        ,
+        
+          m
+          
+            22
+          
+        
+        ,
+        
+          m
+          
+            31
+          
+        
+      
+    
+    {\displaystyle m_{13},m_{22},m_{31}}
+   równych kolejno 
+  
+    
+      
+        1
+        ,
+        6
+        ,
+        5.
+      
+    
+    {\displaystyle 1,6,5.}
+   Jej nadprzekątną i podprzekątną tworzą odpowiednio pary elementów 
+  
+    
+      
+        
+          m
+          
+            12
+          
+        
+        ,
+        
+          m
+          
+            23
+          
+        
+      
+    
+    {\displaystyle m_{12},m_{23}}
+   i 
+  
+    
+      
+        
+          m
+          
+            21
+          
+        
+        ,
+        
+          m
+          
+            32
+          
+        
+      
+    
+    {\displaystyle m_{21},m_{32}}
+   równych kolejno 
+  
+    
+      
+        2
+        ,
+        4
+      
+    
+    {\displaystyle 2,4}
+   oraz 
+  
+    
+      
+        1
+        ,
+        0.
+      
+    
+    {\displaystyle 1,0.}
+  
+Podmacierz danej macierzy to dowolny układ jej elementów powstały przez „skreślenie” pewnej liczby wierszy i kolumn sam tworzący macierz; w szczególności podmacierze (kwadratowe) zawierające kolejne wiersze i kolumny o tych samych wskaźnikach, poczynając od pierwszego, nazywa się podmacierzami głównymi; innymi słowy są to podmacierze kwadratowe zawierające pewną liczbę początkowych wyrazów głównej przekątnej. Macierz klatkowa to macierz, w której wprowadzono podział elementów na grupy kolejnych wierszy i kolumn – obrazowo czyni się to, prowadząc poziome i pionowe linie między wierszami i kolumnami macierzy, dzieląc ją na podmacierze nazywane klatkami. Podział ten umożliwia traktowanie macierzy klatkowej jako macierzy, której elementami są inne macierze (klatki); podobnie macierze klatkowe można zestawiać z „pasujących” macierzy.
+Jeżeli dane są macierze: 
+  
+    
+      
+        
+          A
+        
+        ,
+        
+          B
+        
+        ,
+        
+          C
+        
+        ,
+        
+          D
+        
+      
+    
+    {\displaystyle \mathbf {A} ,\mathbf {B} ,\mathbf {C} ,\mathbf {D} }
+   odpowiednio typów 
+  
+    
+      
+        (
+        n
+        ,
+        m
+        )
+        ,
+         
+        (
+        n
+        ,
+        k
+        )
+        ,
+         
+        (
+        l
+        ,
+        m
+        )
+        ,
+         
+        (
+        l
+        ,
+        k
+        )
+        ,
+      
+    
+    {\displaystyle (n,m),\ (n,k),\ (l,m),\ (l,k),}
+   to można z nich zestawić macierz klatkową
+
+  
+    
+      
+        
+          
+            [
+            
+              
+                
+                  
+                    
+                      
+                        
+                          A
+                        
+                        
+                        
+                          |
+                        
+                        
+                        
+                          B
+                        
+                      
+                      
+                        
+                          C
+                        
+                        
+                        
+                          |
+                        
+                        
+                        
+                          D
+                        
+                      
+                    
+                  
+                
+              
+            
+            ]
+          
+        
+        .
+      
+    
+    {\displaystyle {\begin{bmatrix}{\frac {\mathbf {A} \,|\,\mathbf {B} }{\mathbf {C} \,|\,\mathbf {D} }}\end{bmatrix}}.}
+  
+
+
+== Podstawowe działania ==
+Macierze 
+  
+    
+      
+        
+          A
+        
+        =
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle \mathbf {A} =[a_{ij}]}
+   i 
+  
+    
+      
+        
+          B
+        
+        =
+        [
+        
+          b
+          
+            i
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle \mathbf {B} =[b_{ij}]}
+   uważa się za równe, jeśli mają ten sam typ i równe odpowiadające sobie elementy, tzn. dla każdej możliwej pary 
+  
+    
+      
+        i
+        ,
+        j
+      
+    
+    {\displaystyle i,j}
+   zachodzi 
+  
+    
+      
+        
+          a
+          
+            i
+            j
+          
+        
+        =
+        
+          b
+          
+            i
+            j
+          
+        
+        .
+      
+    
+    {\displaystyle a_{ij}=b_{ij}.}
+  
+
+Sumę macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   i 
+  
+    
+      
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {B} }
+   definiuje się „po współczynnikach”, tzn. za pomocą wzoru
+
+  
+    
+      
+        
+          A
+          +
+          B
+        
+        =
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        +
+        
+          b
+          
+            i
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle \mathbf {A+B} =[a_{ij}+b_{ij}]}
+   dla wszystkich 
+  
+    
+      
+        i
+        ,
+        j
+        .
+      
+    
+    {\displaystyle i,j.}
+  Mnożenie przez skalar macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   oraz liczby 
+  
+    
+      
+        c
+      
+    
+    {\displaystyle c}
+   również definiuje się „po współczynnikach”, czyli
+
+  
+    
+      
+        c
+        
+          A
+        
+        =
+        [
+        c
+        
+          a
+          
+            i
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle c\mathbf {A} =[ca_{ij}]}
+   dla dowolnych 
+  
+    
+      
+        i
+        ,
+        j
+        .
+      
+    
+    {\displaystyle i,j.}
+  Działanie mnożenia macierzy można określić na wiele sposobów, najczęściej jednak „mnożenie macierzy” oznacza tzw. iloczyn Cauchy’ego macierzy (zob. przekształcenia liniowe): dla macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   typu 
+  
+    
+      
+        m
+        ×
+        n
+      
+    
+    {\displaystyle m\times n}
+   oraz 
+  
+    
+      
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {B} }
+   typu 
+  
+    
+      
+        n
+        ×
+        p
+      
+    
+    {\displaystyle n\times p}
+   dany jest on jako taka macierz 
+  
+    
+      
+        
+          C
+        
+      
+    
+    {\displaystyle \mathbf {C} }
+   typu 
+  
+    
+      
+        m
+        ×
+        p
+        ,
+      
+    
+    {\displaystyle m\times p,}
+   oznaczana 
+  
+    
+      
+        
+          A
+          B
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {AB} ,}
+   dla której
+
+  
+    
+      
+        
+          c
+          
+            i
+            j
+          
+        
+        =
+        
+          a
+          
+            i
+            1
+          
+        
+        
+          b
+          
+            1
+            j
+          
+        
+        +
+        
+          a
+          
+            i
+            2
+          
+        
+        
+          b
+          
+            2
+            j
+          
+        
+        +
+        ⋯
+        +
+        
+          a
+          
+            i
+            n
+          
+        
+        
+          b
+          
+            n
+            j
+          
+        
+      
+    
+    {\displaystyle c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2j}+\dots +a_{in}b_{nj}}
+   dla dowolnych 
+  
+    
+      
+        i
+        ,
+        j
+        .
+      
+    
+    {\displaystyle i,j.}
+  Mnożenie to jest łączne, ale nie jest przemienne; ponadto jest ono obustronnie rozdzielne względem dodawania, a do tego zgodne z mnożeniem przez skalar.
+Przestawienie bądź transpozycja danej macierzy 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ,}
+   tzn. zamiana jej kolumn i wierszy miejscami (z zachowaniem kolejności) pozwala na zwięzłe przedstawienie wielu jej własności; macierz transponowaną lub przestawioną względem macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   definiuje się jako macierz
+
+  
+    
+      
+        
+          
+            A
+          
+          
+            
+              T
+            
+          
+        
+        =
+        [
+        
+          a
+          
+            j
+            i
+          
+        
+        ]
+      
+    
+    {\displaystyle \mathbf {A} ^{\mathrm {T} }=[a_{ji}]}
+   dla wszystkich 
+  
+    
+      
+        i
+        ,
+        j
+        ,
+      
+    
+    {\displaystyle i,j,}
+  przy czym 
+  
+    
+      
+        (
+        
+          A
+          B
+        
+        
+          )
+          
+            
+              T
+            
+          
+        
+        =
+        
+          
+            B
+          
+          
+            
+              T
+            
+          
+        
+        
+          
+            A
+          
+          
+            
+              T
+            
+          
+        
+      
+    
+    {\displaystyle (\mathbf {AB} )^{\mathrm {T} }=\mathbf {B} ^{\mathrm {T} }\mathbf {A} ^{\mathrm {T} }}
+   oraz 
+  
+    
+      
+        
+          
+            (
+            
+              
+                A
+              
+              
+                
+                  T
+                
+              
+            
+            )
+          
+          
+            
+              T
+            
+          
+        
+        =
+        
+          A
+        
+        .
+      
+    
+    {\displaystyle \left(\mathbf {A} ^{\mathrm {T} }\right)^{\mathrm {T} }=\mathbf {A} .}
+  
+Operacjami elementarnymi na macierzy nazywa się operacje: zamiany miejscami dwóch wierszy macierzy, pomnożenia jednego z wierszy przez liczbę różną od zera oraz dodania wiersza macierzy do innego jej wiersza. Macierz elementarna to macierz powstała z macierzy jednostkowej w wyniku jednej operacji elementarnej na jej wierszach. Podobnie definiuje się operacje elementarne na kolumnach danej macierzy.
+
+
+== Macierze prostokątne ==
+
+
+=== Układy równań liniowych ===
+Układ 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   równań liniowych o 
+  
+    
+      
+        m
+      
+    
+    {\displaystyle m}
+   zmiennych postaci
+
+  
+    
+      
+        
+          
+            {
+            
+              
+                
+                  
+                    a
+                    
+                      11
+                    
+                  
+                  
+                    x
+                    
+                      1
+                    
+                  
+                  +
+                  
+                    a
+                    
+                      12
+                    
+                  
+                  
+                    x
+                    
+                      2
+                    
+                  
+                  +
+                  ⋯
+                  +
+                  
+                    a
+                    
+                      1
+                      m
+                    
+                  
+                  
+                    x
+                    
+                      m
+                    
+                  
+                  =
+                  
+                    b
+                    
+                      1
+                    
+                  
+                
+              
+              
+                
+                  
+                    a
+                    
+                      21
+                    
+                  
+                  
+                    x
+                    
+                      1
+                    
+                  
+                  +
+                  
+                    a
+                    
+                      22
+                    
+                  
+                  
+                    x
+                    
+                      2
+                    
+                  
+                  +
+                  ⋯
+                  +
+                  
+                    a
+                    
+                      2
+                      m
+                    
+                  
+                  
+                    x
+                    
+                      m
+                    
+                  
+                  =
+                  
+                    b
+                    
+                      2
+                    
+                  
+                
+              
+              
+                
+                  ⋮
+                
+              
+              
+                
+                  
+                    a
+                    
+                      n
+                      1
+                    
+                  
+                  
+                    x
+                    
+                      1
+                    
+                  
+                  +
+                  
+                    a
+                    
+                      n
+                      2
+                    
+                  
+                  
+                    x
+                    
+                      2
+                    
+                  
+                  +
+                  ⋯
+                  +
+                  
+                    a
+                    
+                      n
+                      m
+                    
+                  
+                  
+                    x
+                    
+                      m
+                    
+                  
+                  =
+                  
+                    b
+                    
+                      n
+                    
+                  
+                
+              
+            
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{cases}a_{11}x_{1}+a_{12}x_{2}+\cdots +a_{1m}x_{m}=b_{1}\\a_{21}x_{1}+a_{22}x_{2}+\cdots +a_{2m}x_{m}=b_{2}\\\vdots \\a_{n1}x_{1}+a_{n2}x_{2}+\cdots +a_{nm}x_{m}=b_{n}\end{cases}}}
+  można zapisać w postaci równania macierzowego
+
+  
+    
+      
+        
+          A
+          X
+        
+        =
+        
+          B
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {AX} =\mathbf {B} ,}
+  dla danych macierzy 
+  
+    
+      
+        
+          A
+        
+        =
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        ]
+        ,
+      
+    
+    {\displaystyle \mathbf {A} =[a_{ij}],}
+   nazywanej macierzą główną układu, 
+  
+    
+      
+        
+          X
+        
+        =
+        [
+        
+          x
+          
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle \mathbf {X} =[x_{j}]}
+   oraz 
+  
+    
+      
+        
+          B
+        
+        =
+        [
+        
+          b
+          
+            i
+          
+        
+        ]
+        .
+      
+    
+    {\displaystyle \mathbf {B} =[b_{i}].}
+   Macierz klatkową postaci 
+  
+    
+      
+        [
+        
+          A
+        
+        
+          |
+        
+        
+          B
+        
+        ]
+      
+    
+    {\displaystyle [\mathbf {A} |\mathbf {B} ]}
+   nazywa się macierzą uzupełnioną lub rozszerzoną układu.
+W celu uzyskania rozwiązania układy równań liniowych przekształca się za pomocą operacji elementarnych, które zachowują zbiór rozwiązań układu; odpowiadają im operacje elementarne na wierszach macierzy, których przykładanie można postrzegać jako mnożenie lewostronne macierzy uzupełnionych układu przez macierze elementarne (mnożenie prawostronne odpowiada operacjom elementarnym na kolumnach macierzy).
+
+
+=== Przekształcenia liniowe ===
+
+Każda macierz 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   typu 
+  
+    
+      
+        m
+        ×
+        n
+      
+    
+    {\displaystyle m\times n}
+   opisuje przekształcenie liniowe 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   przestrzeni współrzędnych 
+  
+    
+      
+        
+          K
+          
+            n
+          
+        
+      
+    
+    {\displaystyle K^{n}}
+   w 
+  
+    
+      
+        
+          K
+          
+            m
+          
+        
+      
+    
+    {\displaystyle K^{m}}
+   odwzorowujące wektor 
+  
+    
+      
+        
+          x
+        
+      
+    
+    {\displaystyle \mathbf {x} }
+   w wektor 
+  
+    
+      
+        
+          A
+        
+        (
+        
+          x
+        
+        )
+        .
+      
+    
+    {\displaystyle \mathrm {A} (\mathbf {x} ).}
+   Przekształceniu temu odpowiada mnożenie macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   typu 
+  
+    
+      
+        m
+        ×
+        n
+      
+    
+    {\displaystyle m\times n}
+   przez macierz 
+  
+    
+      
+        
+          X
+        
+      
+    
+    {\displaystyle \mathbf {X} }
+   typu 
+  
+    
+      
+        n
+        ×
+        1
+      
+    
+    {\displaystyle n\times 1}
+   o tych samych współczynnikach, co wektor 
+  
+    
+      
+        
+          x
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {x} ,}
+   dając w wyniku macierz 
+  
+    
+      
+        
+          A
+          X
+        
+      
+    
+    {\displaystyle \mathbf {AX} }
+   typu 
+  
+    
+      
+        m
+        ×
+        1
+      
+    
+    {\displaystyle m\times 1}
+   o współczynnikach identycznych z tymi w wektorze 
+  
+    
+      
+        
+          A
+        
+        (
+        
+          x
+        
+        )
+        .
+      
+    
+    {\displaystyle \mathrm {A} (\mathbf {x} ).}
+   Odwrotnie: każde przekształcenie liniowe 
+  
+    
+      
+        
+          A
+        
+        :
+        
+          K
+          
+            n
+          
+        
+        →
+        
+          K
+          
+            m
+          
+        
+      
+    
+    {\displaystyle \mathrm {A} \colon K^{n}\to K^{m}}
+   zadaje macierz 
+  
+    
+      
+        
+          A
+        
+        =
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle \mathbf {A} =[a_{ij}]}
+   typu 
+  
+    
+      
+        m
+        ×
+        n
+      
+    
+    {\displaystyle m\times n}
+   przy czym 
+  
+    
+      
+        
+          a
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle a_{ij}}
+   to 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  -ta współrzędna wektora 
+  
+    
+      
+        
+          A
+        
+        (
+        
+          
+            e
+          
+          
+            j
+          
+        
+        )
+        ,
+      
+    
+    {\displaystyle \mathrm {A} (\mathbf {e} _{j}),}
+   gdzie 
+  
+    
+      
+        
+          
+            e
+          
+          
+            j
+          
+        
+        =
+        (
+        0
+        ,
+        …
+        ,
+        0
+        ,
+        1
+        ,
+        0
+        ,
+        …
+        ,
+        0
+        )
+      
+    
+    {\displaystyle \mathbf {e} _{j}=(0,\dots ,0,1,0,\dots ,0)}
+   jest wektorem o współrzędnych równych zeru poza 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+  -tą współrzędną równą jedynce. Przekształcenie 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   jest więc reprezentowane przez macierz 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ,}
+   zaś 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   jest macierzą przekształcenia liniowego 
+  
+    
+      
+        
+          A
+        
+        .
+      
+    
+    {\displaystyle \mathrm {A} .}
+  
+W ten sposób układ równań liniowych 
+  
+    
+      
+        
+          A
+          X
+        
+        =
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {AX} =\mathbf {B} }
+   można traktować jako problem opisu przekształcenia liniowego 
+  
+    
+      
+        
+          A
+        
+        (
+        
+          x
+        
+        )
+        =
+        
+          b
+        
+        ,
+      
+    
+    {\displaystyle \mathrm {A} (\mathbf {x} )=\mathbf {b} ,}
+   gdzie
+
+istnienie rozwiązań jest tożsame z istnieniem wektora 
+  
+    
+      
+        
+          x
+        
+      
+    
+    {\displaystyle \mathbf {x} }
+   spełniającego 
+  
+    
+      
+        
+          A
+        
+        (
+        
+          x
+        
+        )
+        =
+        
+          b
+        
+      
+    
+    {\displaystyle \mathrm {A} (\mathbf {x} )=\mathbf {b} }
+   (czyli należeniem 
+  
+    
+      
+        
+          b
+        
+      
+    
+    {\displaystyle \mathbf {b} }
+   do obrazu 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+  ),
+jednoznaczność rozwiązań jest równoważna różnowartościowości przekształcenia 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   (czyli trywialności jego jądra).Podejście to tłumaczy często stosowane nazwy wektor zmiennych i wektor wyrazów wolnych odpowiednio macierzy 
+  
+    
+      
+        
+          X
+        
+      
+    
+    {\displaystyle \mathbf {X} }
+   i macierzy 
+  
+    
+      
+        
+          B
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {B} ,}
+   którym odpowiadają wektory 
+  
+    
+      
+        
+          x
+        
+      
+    
+    {\displaystyle \mathbf {x} }
+   oraz 
+  
+    
+      
+        
+          b
+        
+        .
+      
+    
+    {\displaystyle \mathbf {b} .}
+   W ogólności macierze odpowiednio typu 
+  
+    
+      
+        m
+        ×
+        1
+      
+    
+    {\displaystyle m\times 1}
+   oraz 
+  
+    
+      
+        1
+        ×
+        n
+      
+    
+    {\displaystyle 1\times n}
+   (jednokolumnowe i jednowierszowe) nazywa się zwykle wektorami kolumnowymi i wektorami wierszowymi.
+Przykładowo macierz rzeczywistą 
+  
+    
+      
+        
+          A
+        
+        =
+        
+          [
+          
+            
+              
+                
+                  
+                    a
+                  
+                  
+                    c
+                  
+                
+                
+                  
+                    b
+                  
+                  
+                    d
+                  
+                
+              
+            
+          
+          ]
+        
+      
+    
+    {\displaystyle \mathbf {A} =\left[{\begin{smallmatrix}a&c\\b&d\end{smallmatrix}}\right]}
+   można postrzegać jako przekształcenie kwadratu jednostkowego w równoległobok o wierzchołkach 
+  
+    
+      
+        (
+        0
+        ,
+        0
+        )
+        ;
+         
+        (
+        a
+        ,
+        b
+        )
+        ;
+         
+        (
+        a
+        +
+        c
+        ,
+        b
+        +
+        d
+        )
+        ;
+         
+        (
+        c
+        ,
+        d
+        )
+        .
+      
+    
+    {\displaystyle (0,0);\ (a,b);\ (a+c,b+d);\ (c,d).}
+   Równoległobok na rys. obok otrzymano poprzez przemnożenie macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   kolejno przez macierze 
+  
+    
+      
+        
+          [
+          
+            
+              
+                
+                  
+                    0
+                  
+                
+                
+                  
+                    0
+                  
+                
+              
+            
+          
+          ]
+        
+        ,
+        
+          [
+          
+            
+              
+                
+                  
+                    1
+                  
+                
+                
+                  
+                    0
+                  
+                
+              
+            
+          
+          ]
+        
+        ,
+        
+          [
+          
+            
+              
+                
+                  
+                    1
+                  
+                
+                
+                  
+                    1
+                  
+                
+              
+            
+          
+          ]
+        
+        ,
+        
+          [
+          
+            
+              
+                
+                  
+                    0
+                  
+                
+                
+                  
+                    1
+                  
+                
+              
+            
+          
+          ]
+        
+        ,
+      
+    
+    {\displaystyle \left[{\begin{smallmatrix}0\\0\end{smallmatrix}}\right],\left[{\begin{smallmatrix}1\\0\end{smallmatrix}}\right],\left[{\begin{smallmatrix}1\\1\end{smallmatrix}}\right],\left[{\begin{smallmatrix}0\\1\end{smallmatrix}}\right],}
+   co odpowiada przykładaniu przekształcenia 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   do wektorów wskazujących wierzchołki kwadratu jednostkowego.
+
+Definicja standardowego mnożenia macierzy jest dobrana tak, by we wzajemnie jednoznacznej odpowiedniości przekształceń liniowych i macierzy składaniu pierwszych odpowiadało mnożenie drugich: jeśli przekształceniu 
+  
+    
+      
+        
+          B
+        
+        :
+        
+          K
+          
+            m
+          
+        
+        →
+        
+          K
+          
+            p
+          
+        
+      
+    
+    {\displaystyle \mathrm {B} \colon K^{m}\to K^{p}}
+   odpowiada macierz 
+  
+    
+      
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {B} }
+   typu 
+  
+    
+      
+        p
+        ×
+        m
+        ,
+      
+    
+    {\displaystyle p\times m,}
+   to złożeniu 
+  
+    
+      
+        
+          B
+        
+        ∘
+        
+          A
+        
+        :
+        
+          K
+          
+            n
+          
+        
+        →
+        
+          K
+          
+            p
+          
+        
+      
+    
+    {\displaystyle \mathrm {B} \circ \mathrm {A} \colon K^{n}\to K^{p}}
+   odpowiada wtedy macierz 
+  
+    
+      
+        
+          B
+          A
+        
+      
+    
+    {\displaystyle \mathbf {BA} }
+   typu 
+  
+    
+      
+        p
+        ×
+        n
+        ,
+      
+    
+    {\displaystyle p\times n,}
+   gdyż działaniu 
+  
+    
+      
+        (
+        
+          B
+        
+        ∘
+        
+          A
+        
+        )
+        (
+        
+          x
+        
+        )
+        =
+        
+          B
+        
+        (
+        
+          A
+        
+        (
+        
+          x
+        
+        )
+        )
+      
+    
+    {\displaystyle (\mathrm {B} \circ \mathrm {A} )(\mathbf {x} )=\mathrm {B} (\mathrm {A} (\mathbf {x} ))}
+   odpowiada mnożenie macierzy 
+  
+    
+      
+        (
+        
+          B
+          A
+        
+        )
+        
+          X
+        
+        =
+        
+          B
+        
+        (
+        
+          A
+          X
+        
+        )
+        .
+      
+    
+    {\displaystyle (\mathbf {BA} )\mathbf {X} =\mathbf {B} (\mathbf {AX} ).}
+  
+Z tego powodu macierz 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   traktuje się zwykle jak odpowiadające mu przekształcenie liniowe 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathrm {A} ,}
+   a wektory 
+  
+    
+      
+        
+          x
+        
+      
+    
+    {\displaystyle \mathbf {x} }
+   utożsamia się z ich macierzami 
+  
+    
+      
+        
+          X
+        
+        ;
+      
+    
+    {\displaystyle \mathbf {X} ;}
+   w związku z tym spotyka się często zapis 
+  
+    
+      
+        
+          A
+          x
+        
+      
+    
+    {\displaystyle \mathbf {Ax} }
+   oznaczający działanie przekształcenia liniowego na wektorze 
+  
+    
+      
+        
+          x
+        
+        ;
+      
+    
+    {\displaystyle \mathbf {x} ;}
+   zapis 
+  
+    
+      
+        
+          A
+        
+        
+          x
+        
+      
+    
+    {\displaystyle \mathrm {A} \mathbf {x} }
+   jest nieco bardziej formalny zważywszy na własność liniowość przekształcenia.
+Rzędem macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   nazywa się rząd odpowiadającego jej przekształcenia liniowego 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathrm {A} ,}
+   czyli wymiar jego obrazu, tzn. największą liczbę liniowo niezależnych wierszy bądź kolumn macierzy (liczba niezależnych równań w układzie równań liniowych). Twierdzenie o rzędzie mówi, że suma wymiaru jądra i rzędu macierzy jest równa liczbie jej kolumn.
+
+
+== Macierze kwadratowe ==
+Przekształcenie liniowe przestrzeni liniowej 
+  
+    
+      
+        
+          K
+          
+            n
+          
+        
+      
+    
+    {\displaystyle K^{n}}
+   (albo dowolnej innej) w siebie nazywa się jej endomorfizmem liniowym; macierz endomorfizmu jest zawsze kwadratowa. Przestrzenie liniowe, które zawierają się w innych przestrzeniach liniowych, nazywa się ich podprzestrzeniami (liniowymi); przykładami podprzestrzeni dowolnej przestrzeni są podprzestrzeń niewłaściwa, czyli ona sama, oraz podprzestrzeń zerowa/trywialna, czyli zawierają wyłącznie wektor zerowy (por. przykłady przestrzeni liniowych). Można więc powiedzieć, że endomorfizm przekształca przestrzeń w pewną jej podprzestrzeń – jest to kluczowa, a zarazem znamienna własność tych przekształceń liniowych.
+Macierzą diagonalną nazywa się macierz kwadratową, której wszystkie niezerowe elementy znajdują się wyłącznie na głównej przekątnej. Często zapisuje się ją jako 
+  
+    
+      
+        diag
+        ⁡
+        (
+        
+          a
+          
+            11
+          
+        
+        ,
+        
+          a
+          
+            22
+          
+        
+        ,
+        …
+        ,
+        
+          a
+          
+            n
+            n
+          
+        
+        )
+      
+    
+    {\displaystyle \operatorname {diag} (a_{11},a_{22},\dots ,a_{nn})}
+   gdzie 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   jest jej stopniem. Macierze kwadratowe o elementach nad (odp. pod) przekątną główną równych zeru nazywa się dolnotrójkątnymi (odp. górnotrójkątnymi); macierze jednocześnie dolno- i górnotrójkątne są diagonalne. Macierz trójkątną mającą na głównej przekątnej jedynki nazywa się unitrójkątną. Śladem 
+  
+    
+      
+        
+          t
+          r
+        
+        (
+        
+          A
+        
+        )
+      
+    
+    {\displaystyle \mathrm {tr} (\mathbf {A} )}
+   macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   nazywa się sumę jej elementów na głównej przekątnej, przy czym 
+  
+    
+      
+        
+          t
+          r
+        
+        (
+        
+          A
+          B
+        
+        )
+        =
+        
+          t
+          r
+        
+        (
+        
+          B
+          A
+        
+        )
+      
+    
+    {\displaystyle \mathrm {tr} (\mathbf {AB} )=\mathrm {tr} (\mathbf {BA} )}
+   oraz 
+  
+    
+      
+        
+          t
+          r
+        
+        
+          (
+          
+            
+              A
+            
+            
+              
+                T
+              
+            
+          
+          )
+        
+        =
+        
+          t
+          r
+        
+        (
+        
+          A
+        
+        )
+        .
+      
+    
+    {\displaystyle \mathrm {tr} \left(\mathbf {A} ^{\mathrm {T} }\right)=\mathrm {tr} (\mathbf {A} ).}
+  
+Macierze postaci 
+  
+    
+      
+        diag
+        ⁡
+        (
+        a
+        ,
+        a
+        ,
+        …
+        ,
+        a
+        )
+      
+    
+    {\displaystyle \operatorname {diag} (a,a,\dots ,a)}
+   nazywa się macierzami skalarnymi. Macierz skalarną 
+  
+    
+      
+        
+          I
+        
+        =
+        diag
+        ⁡
+        (
+        1
+        ,
+        1
+        ,
+        …
+        ,
+        1
+        )
+      
+    
+    {\displaystyle \mathbf {I} =\operatorname {diag} (1,1,\dots ,1)}
+   nazywa się macierzą jednostkową. Jeżeli
+
+  
+    
+      
+        
+          A
+          B
+        
+        =
+        
+          B
+          A
+        
+        =
+        
+          I
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {AB} =\mathbf {BA} =\mathbf {I} ,}
+  gdzie wszystkie powyższe macierze są kwadratowe ustalonego stopnia, to macierz 
+  
+    
+      
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {B} }
+   jest wyznaczona jednoznacznie – nazywa się ją macierzą odwrotną do 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   i oznacza symbolem 
+  
+    
+      
+        
+          
+            A
+          
+          
+            −
+            1
+          
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ^{-1},}
+   o macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   mówi się zaś wtedy, że jest odwracalna.
+
+
+=== Wyznacznik ===
+
+Wyznacznikiem 
+  
+    
+      
+        det
+        (
+        
+          A
+        
+        )
+      
+    
+    {\displaystyle \det(\mathbf {A} )}
+   lub 
+  
+    
+      
+        
+          |
+        
+        
+          A
+        
+        
+          |
+        
+      
+    
+    {\displaystyle |\mathbf {A} |}
+   macierzy kwadratowej 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   nazywa się liczbę kodującą pewne właściwości przekształcenia 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathrm {A} ,}
+   reprezentowanego przez tę macierz: jego wartość bezwzględna jest równa (w 
+  
+    
+      
+        
+          
+            R
+          
+          
+            2
+          
+        
+      
+    
+    {\displaystyle \mathbb {R} ^{2}}
+  ) polu powierzchni obrazu kwadratu jednostkowego, tzn. pewnego równoległoboku, lub (w 
+  
+    
+      
+        
+          
+            R
+          
+          
+            3
+          
+        
+      
+    
+    {\displaystyle \mathbb {R} ^{3}}
+  ) objętości obrazu sześcianu jednostkowego, tzn. pewnego równoległościanu, a znak mówi o orientacji przekształcenia – jest on dodatni wtedy i tylko wtedy, gdy przekształcenie zachowuje orientację; macierz o wyznaczniku jednostkowym reprezentuje przekształcenie równopolowe.
+Macierz o zerowym wyznaczniku nazywa się osobliwą lub zdegenerowaną (przekształcenie „spłaszcza” bądź „skleja”), w przeciwnym przypadku nazywa się ją nieosobliwą lub niezdegenerowaną. Macierz jest odwracalna wtedy i tylko wtedy, gdy jest nieosobliwa, co ma z kolei miejsce wtedy i tylko wtedy, gdy jej rząd jest maksymalny, czyli równy jej stopniowi. Stąd układ równań liniowych o kwadratowej macierzy głównej ma jednoznaczne rozwiązanie wtedy i tylko wtedy, gdy wspomniana macierz ma niezerowy wyznacznik (zob. układ równań liniowych: charakteryzacja rozwiązań). Wyznaczniki stosuje się także do rozwiązywania układów równań liniowych metodą wzorów Cramera, gdzie iloraz wyznaczników dwóch powiązanych macierzy kwadratowych jest równy wartości każdej ze zmiennych układu.
+Wyznacznik macierzy stopnia drugiego dany jest wzorem
+
+  
+    
+      
+        det
+        
+          
+            [
+            
+              
+                
+                  a
+                
+                
+                  b
+                
+              
+              
+                
+                  c
+                
+                
+                  d
+                
+              
+            
+            ]
+          
+        
+        =
+        a
+        d
+        −
+        b
+        c
+        .
+      
+    
+    {\displaystyle \det {\begin{bmatrix}a&b\\c&d\end{bmatrix}}=ad-bc.}
+  Wyznacznik macierzy stopnia trzeciego można obliczyć za pomocą reguły Sarrusa, podczas gdy wzór Leibniza (znany również jako permutacyjna definicja wyznacznika) uogólnia te wzory na macierze dowolnych stopni. Twierdzenie Cauchy’ego o wyznacznikach mówi, że wyznacznik iloczynu macierzy jest równy iloczynowi ich wyznaczników, 
+  
+    
+      
+        det
+        (
+        
+          A
+          B
+        
+        )
+        =
+        det
+        (
+        
+          A
+        
+        )
+        det
+        (
+        
+          B
+        
+        )
+        .
+      
+    
+    {\displaystyle \det(\mathbf {AB} )=\det(\mathbf {A} )\det(\mathbf {B} ).}
+   Dodanie wielokrotności dowolnego wiersza do innego (kolumny do innej) nie zmienia wartości wyznacznika; zamiana miejscami dwóch wierszy (kolumn) zmienia znak wyznacznika na przeciwny (zob. własności operacji elementarnych). Korzystając z tych operacji, dowolną macierz można przekształcić w macierz dolno- lub górnotrójkątną, a wyznacznik tego rodzaju macierzy jest równy iloczynowi elementów na przekątnej głównej (w szczególności jest to prawda dla macierzy diagonalnych).
+Rozwinięcie Laplace’a umożliwia wyrażenie wyznacznika za pomocą minorów, tzn. wyznaczników podmacierzy głównych (twierdzenie to umożliwia rekurencyjne zdefiniowanie wyznacznika począwszy od wyznacznika macierzy stopnia pierwszego jako jej jedynego elementu, czy nawet wyznacznika macierzy zerowego stopnia równego z definicji jedności). Minory podmacierzy głównej (tzn. zawierające elementy głównej przekątnej) nazywa się minorami głównymi; gdy minor główny zawiera kolejne, począwszy od pierwszego, elementy głównej przekątnej, nazywa się go wiodącym minorem głównym. Wśród wszystkich niezerowych minorów tej macierzy istnieje choć jeden o największym stopniu; rząd macierzy wyznaczony jest przez stopień tego minora (nie przekracza więc liczby jej wierszy, czy kolumn). Każdy niezerowy minor macierzy stopnia równego jej rzędowi nazywa się minorem bazowym tej macierzy. Wiele wyników algebry liniowej daje się zwięźle wyrazić w języku minorów za pomocą tzw. macierzy dołączonej (bądź przestawionej względem niej macierzy dopełnień algebraicznych) zbudowanej z tzw. dopełnień algebraicznych definiowanych jako minory ustalonego znaku.
+
+
+=== Niezmienniczość i zagadnienie własne ===
+Każdy endomorfizm 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   odwzorowuje całą przestrzeń, na której jest określony, w siebie (na mocy definicji endomorfizmu); podobnie zawsze odwzorowuje on w siebie podprzestrzeń zerową (wprost z definicji przekształcenia liniowego). W ogólności może on jednak odwzorowywać daną podprzestrzeń w niemającą z nią związku, zupełnie inną podprzestrzeń. Informacja o tym, które z podprzestrzeni są 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+  -niezmiennicze, czyli odwzorowywane przez 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   w siebie, może ułatwić zrozumienie tego jak przekształcenie 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   działa na całej przestrzeni poprzez badanie jak działa na niezależnych od siebie podprzestrzeniach składowych. W kontekście macierzy podprzestrzenie niezmiennicze mogą ułatwić ich rozkład (zob. Rozkłady macierzy).
+Jako najprostsze i niosące przy tym istotną informację, szczególnie interesujące są jednowymiarowe podprzestrzenie niezmiennicze opisywane przez kierunek jednego (niezerowego) wektora 
+  
+    
+      
+        
+          v
+        
+      
+    
+    {\displaystyle \mathbf {v} }
+   nazywanego wektorem własnym danego endomorfizmu. Oznacza to, że jest on przekształcany przez endomorfizm 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   na pewną swoją wielokrotność: 
+  
+    
+      
+        
+          A
+        
+        (
+        
+          v
+        
+        )
+        =
+        λ
+        
+          v
+        
+        .
+      
+    
+    {\displaystyle \mathrm {A} (\mathbf {v} )=\lambda \mathbf {v} .}
+   Liczbę 
+  
+    
+      
+        λ
+      
+    
+    {\displaystyle \lambda }
+   nazywa się wartością własną (stowarzyszoną z wektorem 
+  
+    
+      
+        
+          v
+        
+      
+    
+    {\displaystyle \mathbf {v} }
+  ) danego endomorfizmu 
+  
+    
+      
+        
+          A
+        
+        ;
+      
+    
+    {\displaystyle \mathrm {A} ;}
+   w zapisie macierzowym równanie to przyjmuje postać
+
+  
+    
+      
+        
+          A
+          V
+        
+        =
+        λ
+        
+          V
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {AV} =\lambda \mathbf {V} ,}
+  gdzie 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   jest macierzą reprezentującą 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathrm {A} ,}
+   zaś 
+  
+    
+      
+        
+          V
+        
+      
+    
+    {\displaystyle \mathbf {V} }
+   jest macierzą współczynników wektora 
+  
+    
+      
+        
+          v
+        
+      
+    
+    {\displaystyle \mathbf {v} }
+   (w tej samej ustalonej bazie). Powyższe równanie można przekształcić do równoważnej postaci 
+  
+    
+      
+        
+          A
+          V
+        
+        −
+        λ
+        
+          V
+        
+        =
+        
+          Θ
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {AV} -\lambda \mathbf {V} ={\boldsymbol {\Theta }},}
+   czyli zapisać w formie układu równań liniowych, 
+  
+    
+      
+        (
+        
+          A
+        
+        −
+        λ
+        
+          I
+        
+        )
+        
+          V
+        
+        =
+        
+          Θ
+        
+        ,
+      
+    
+    {\displaystyle (\mathbf {A} -\lambda \mathbf {I} )\mathbf {V} ={\boldsymbol {\Theta }},}
+   gdzie 
+  
+    
+      
+        
+          I
+        
+      
+    
+    {\displaystyle \mathbf {I} }
+   jest macierzą jednostkową. Ze względu na niezerowość 
+  
+    
+      
+        
+          V
+        
+      
+    
+    {\displaystyle \mathbf {V} }
+   równanie to jest rozwiązalne, gdy macierz 
+  
+    
+      
+        (
+        
+          A
+        
+        −
+        λ
+        
+          I
+        
+        )
+      
+    
+    {\displaystyle (\mathbf {A} -\lambda \mathbf {I} )}
+   jest nieodwracalna lub (równoważnie) osobliwa, tzn.
+
+  
+    
+      
+        det
+        (
+        
+          A
+        
+        −
+        λ
+        
+          I
+        
+        )
+        =
+        0.
+      
+    
+    {\displaystyle \det(\mathbf {A} -\lambda \mathbf {I} )=0.}
+  Funkcja skalarna 
+  
+    
+      
+        
+          
+            p
+          
+          
+            
+              A
+            
+          
+        
+        (
+        t
+        )
+        =
+        det
+        (
+        
+          A
+        
+        −
+        t
+        
+          I
+        
+        )
+      
+    
+    {\displaystyle \mathrm {p} _{\mathbf {A} }(t)=\det(\mathbf {A} -t\mathbf {I} )}
+   jest wielomianem stopnia 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   nazywanym wielomianem charakterystycznym macierzy 
+  
+    
+      
+        
+          A
+        
+        ;
+      
+    
+    {\displaystyle \mathbf {A} ;}
+   wielomian ten ma co najwyżej 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   różnych pierwiastków, którymi są wartości własne macierzy. Zgodnie z twierdzeniem Cayleya-Hamiltona dla macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   spełnione jest równanie macierzowe 
+  
+    
+      
+        
+          p
+          
+            
+              A
+            
+          
+        
+        (
+        
+          A
+        
+        )
+        =
+        
+          Θ
+        
+        ;
+      
+    
+    {\displaystyle p_{\mathbf {A} }(\mathbf {A} )={\boldsymbol {\Theta }};}
+   przykładowo jeśli 
+  
+    
+      
+        
+          A
+        
+        =
+        
+          [
+          
+            
+              
+                
+                  
+                    1
+                  
+                  
+                    2
+                  
+                
+                
+                  
+                    3
+                  
+                  
+                    4
+                  
+                
+              
+            
+          
+          ]
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} =\left[{\begin{smallmatrix}1&2\\3&4\end{smallmatrix}}\right],}
+   to 
+  
+    
+      
+        
+          
+            p
+          
+          
+            
+              A
+            
+          
+        
+        (
+        t
+        )
+        =
+        
+          t
+          
+            2
+          
+        
+        −
+        5
+        t
+        −
+        2
+        ,
+      
+    
+    {\displaystyle \mathrm {p} _{\mathbf {A} }(t)=t^{2}-5t-2,}
+   skąd 
+  
+    
+      
+        
+          
+            p
+          
+          
+            
+              A
+            
+          
+        
+        (
+        
+          A
+        
+        )
+        =
+        
+          
+            A
+          
+          
+            2
+          
+        
+        −
+        5
+        
+          A
+        
+        −
+        2
+        
+          I
+        
+        ,
+      
+    
+    {\displaystyle \mathrm {p} _{\mathbf {A} }(\mathbf {A} )=\mathbf {A} ^{2}-5\mathbf {A} -2\mathbf {I} ,}
+   czyli np. 
+  
+    
+      
+        
+          
+            A
+          
+          
+            2
+          
+        
+        =
+        5
+        
+          A
+        
+        +
+        2
+        
+          I
+        
+      
+    
+    {\displaystyle \mathbf {A} ^{2}=5\mathbf {A} +2\mathbf {I} }
+   (zob. Rozkłady macierzy i Aspekty numeryczne)
+Każda z wartości własnych opisuje przekształcenie wzdłuż wektorów własnych – tak wyznacznik, będący iloczynem wartości własnych, jak i ślad, równy sumie wartości własnych, stanowią istotną informację o rodzaju przekształcenia liniowego: ślad może być interpretowany jako nieskończenie mała zmiana objętości (jako pochodna wyznacznika będącego wielomianem, zob. wzór Jacobiego), podczas gdy dodatni znak wyznacznika mówi o tym, czy przekształcenie jest złożeniem parzystej liczby symetrii (zachowuje orientację), a jego moduł opisuje przyrost wzdłuż każdego z wektorów własnych przekształcenia (tzn. jego bezwzględną zmianę pola bądź objętości).
+Przykładowo dla endomorfizmów opisanych w sekcji Przekształcenia liniowe wektory 
+  
+    
+      
+        [
+        1
+        ,
+        0
+        ]
+        ;
+         
+        [
+        0
+        ,
+        1
+        ]
+      
+    
+    {\displaystyle [1,0];\ [0,1]}
+   są wektorami własnymi symetrii, przekształcenia ekwiafinicznego i jednokładności z wartościami własnymi odpowiednio 
+  
+    
+      
+        (
+        −
+        1
+        ,
+        1
+        )
+        ;
+         
+        (
+        3
+        
+          /
+        
+        2
+        ,
+        2
+        
+          /
+        
+        3
+        )
+        ;
+         
+        (
+        3
+        
+          /
+        
+        2
+        ,
+        3
+        
+          /
+        
+        2
+        )
+        .
+      
+    
+    {\displaystyle (-1,1);\ (3/2,2/3);\ (3/2,3/2).}
+   Poglądowo oznacza to, że w przekształceniach tych łatwo można wyróżnić część działającą „w poziomie” i „w pionie”: w symetrii to kierunek „poziomy” zostaje odbity, a „pionowy” zachowany; jednostkowy iloczyn wartości własnych (tj. wyznacznik) w przekształceniu ekwiafinicznym wskazuje zachowanie pola powierzchni, z kolei równe wartości własne dla jednokładności oznaczają, że skalowanie odbywa się w każdym z kierunków w tym samym stopniu. Jedynym wektorem własnym powinowactwa jest 
+  
+    
+      
+        [
+        1
+        ,
+        0
+        ]
+      
+    
+    {\displaystyle [1,0]}
+   o podwójnej wartości własnej 
+  
+    
+      
+        1
+        ;
+      
+    
+    {\displaystyle 1;}
+   poglądowo oznacza to, że w przekształceniu zachowywany jest tylko kierunek „poziomy” (pojedynczy wektor własny), przy czym odległości między punktami w tym kierunku również są zachowane (jednostkowa stowarzyszona wartość własna). Wektory i wartości własne przytoczonych obrotów nie wyrażają się za pomocą wielkości rzeczywistych.
+
+
+=== Symetria i określoność ===
+Macierz kwadratową 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   równą swojemu przestawieniu, 
+  
+    
+      
+        
+          A
+        
+        =
+        
+          
+            A
+          
+          
+            
+              T
+            
+          
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} =\mathbf {A} ^{\mathrm {T} },}
+   nazywa się symetryczną; jeśli jest ona równa przeciwności swojego przestawienia, 
+  
+    
+      
+        
+          A
+        
+        =
+        −
+        
+          
+            A
+          
+          
+            
+              T
+            
+          
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} =-\mathbf {A} ^{\mathrm {T} },}
+   to nazywa się ją antysymetryczną. W przypadku macierzy zespolonych symetrię macierzy zastępuje się często jej hermitowskością (samosprzężonością), tzn. rozpatruje się 
+  
+    
+      
+        
+          A
+        
+        =
+        
+          
+            A
+          
+          
+            ⋆
+          
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} =\mathbf {A} ^{\star },}
+   gdzie gwiazdka oznacza sprzężenie hermitowskie macierzy, tzn. złożenie przestawienia macierzy ze sprzężeniem zespolonym jej elementów.
+Każdej formie dwuliniowej 
+  
+    
+      
+        B
+        :
+        
+          K
+          
+            n
+          
+        
+        ×
+        
+          K
+          
+            n
+          
+        
+        →
+        K
+      
+    
+    {\displaystyle B\colon K^{n}\times K^{n}\to K}
+   można przyporządkować macierz kwadratową 
+  
+    
+      
+        
+          B
+        
+        =
+        [
+        
+          B
+          
+            i
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle \mathbf {B} =[B_{ij}]}
+   stopnia 
+  
+    
+      
+        n
+        ,
+      
+    
+    {\displaystyle n,}
+   gdzie 
+  
+    
+      
+        
+          B
+          
+            i
+            j
+          
+        
+        =
+        B
+        (
+        
+          
+            e
+          
+          
+            i
+          
+        
+        ,
+        
+          
+            e
+          
+          
+            j
+          
+        
+        )
+        ,
+      
+    
+    {\displaystyle B_{ij}=B(\mathbf {e} _{i},\mathbf {e} _{j}),}
+   a 
+  
+    
+      
+        {
+        
+          
+            e
+          
+          
+            i
+          
+        
+        }
+      
+    
+    {\displaystyle \{\mathbf {e} _{i}\}}
+   jest standardową bazą przestrzeni współrzędnych 
+  
+    
+      
+        
+          K
+          
+            n
+          
+        
+        .
+      
+    
+    {\displaystyle K^{n}.}
+   Jeśli macierz 
+  
+    
+      
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {B} }
+   jest symetryczna (albo samosprzężona w przypadku zespolonym), to może być ona postrzegana jako macierz formy kwadratowej 
+  
+    
+      
+        Q
+        (
+        
+          x
+        
+        )
+        =
+        B
+        (
+        
+          x
+        
+        ,
+        
+          x
+        
+        )
+        .
+      
+    
+    {\displaystyle Q(\mathbf {x} )=B(\mathbf {x} ,\mathbf {x} ).}
+   Przyłożeniu formy dwuliniowej 
+  
+    
+      
+        B
+      
+    
+    {\displaystyle B}
+   do pary wektorów 
+  
+    
+      
+        
+          x
+        
+        ,
+        
+          y
+        
+      
+    
+    {\displaystyle \mathbf {x} ,\mathbf {y} }
+   odpowiada wówczas mnożenie 
+  
+    
+      
+        
+          
+            X
+          
+          
+            
+              T
+            
+          
+        
+        
+          B
+          Y
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {X} ^{\mathrm {T} }\mathbf {BY} ,}
+   skąd obliczeniu wartości formy kwadratowej 
+  
+    
+      
+        Q
+      
+    
+    {\displaystyle Q}
+   dla wektora 
+  
+    
+      
+        
+          x
+        
+      
+    
+    {\displaystyle \mathbf {x} }
+   odpowiada wówczas mnożenie 
+  
+    
+      
+        
+          
+            X
+          
+          
+            
+              T
+            
+          
+        
+        
+          B
+          X
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {X} ^{\mathrm {T} }\mathbf {BX} ,}
+   gdzie 
+  
+    
+      
+        
+          X
+        
+        ,
+        
+          Y
+        
+      
+    
+    {\displaystyle \mathbf {X} ,\mathbf {Y} }
+   są macierzami jednokolumnowymi zawierającymi współczynniki wektorów 
+  
+    
+      
+        
+          x
+        
+        ,
+        
+          y
+        
+        .
+      
+    
+    {\displaystyle \mathbf {x} ,\mathbf {y} .}
+  
+Formę kwadratową 
+  
+    
+      
+        Q
+      
+    
+    {\displaystyle Q}
+   nazywa się dodatnio lub ujemnie określoną albo nieokreśloną, jeżeli dla wszystkich niezerowych wektorów 
+  
+    
+      
+        
+          x
+        
+      
+    
+    {\displaystyle \mathbf {x} }
+   forma 
+  
+    
+      
+        Q
+        (
+        
+          x
+        
+        )
+      
+    
+    {\displaystyle Q(\mathbf {x} )}
+   przyjmuje odpowiednio wyłącznie wartości dodatnie, ujemne, bądź obu znaków. Jeśli forma przyjmuje wyłącznie wartości nieujemne albo niedodatnie, to nazywa się ją odpowiednio określoną nieujemnie albo niedodatnio (półokreśloną dodatnio bądź ujemnie); w ten sposób forma jest nieokreślona wtedy i tylko wtedy, gdy nie jest określona ani nieujemnie, ani niedodatnio; forma mająca (choć jedną) wartość własną równą zeru nazywa się osobliwą (zdegenerowaną) w przeciwnym przypadku nazywa się ją nieosobliwą (niezdegenerowaną). Określoność macierzy 
+  
+    
+      
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {B} }
+   definiuje się jako określoność reprezentowanej przez nią formy kwadratowej 
+  
+    
+      
+        Q
+      
+    
+    {\displaystyle Q}
+   (czyli odpowiadającej jej formy dwuliniowej 
+  
+    
+      
+        B
+      
+    
+    {\displaystyle B}
+  ); identycznie ma się rzecz ze zdegenerowaniem. Terminy dotyczące określoności form przenoszą się wprost na odpowiadające im macierze; osobliwość formy odpowiada wtedy osobliwości jej macierzy (co można również sprawdzić za pomocą wyznacznika lub rzędu).
+Twierdzenie spektralne mówi, że rzeczywiste macierze symetryczne i zespolone macierze hermitowskie są diagonalizowalne, tzn. istnieje taka baza, nazywana bazą własną, w której dowolny wektor można przedstawić w postaci kombinacji liniowej wektorów własnych. Innymi słowy istnieje baza, w której dana forma kwadratowa ma macierz diagonalną, przy czym jej główna przekątna zawiera wartości własne stowarzyszone z wektorami bazy własnej – określoność formy kwadratowej (dwuliniowej), czy też jej macierzy, można zatem definiować za pomocą (znaków) jej wartości własnych (tzw. kryterium Sylvestera określoności). W szczególności diagonalizowalna jest macierz standardowego iloczynu skalarnego dowolnej przestrzeni współrzędnych, przy czym w bazie standardowej ma ona postać macierzy jednostkowej, co oznacza, że iloczyn skalarny jest dodatnio określoną formą dwuliniową na tej przestrzeni; stąd jego działanie definiuje się zwykle w zapisie macierzowym wzorem 
+  
+    
+      
+        
+          
+            X
+          
+          
+            
+              T
+            
+          
+        
+        
+          Y
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {X} ^{\mathrm {T} }\mathbf {Y} ,}
+   z kolei stowarzyszona z nim forma kwadratowa definiuje kwadrat standardowej normy tej przestrzeni.
+
+
+== Aspekty numeryczne ==
+Oprócz własności teoretycznych macierzy i ich związków z różnymi dziedzinami wiedzy z praktycznego punktu widzenia ważne jest efektywne i dokładne przeprowadzanie obliczeń na macierzach – dział matematyki obejmujący tę problematykę nazywa się numeryczną algebrą liniową. Zasadniczymi elementami są złożoność obliczeniowa i stabilność numeryczna algorytmu realizującego obliczenia. Zwykle stosuje się algorytmy wprost implementujące dane zagadnienie bądź różnorakie podejścia iteracyjne, np. wektor własny można znaleźć, wskazując ciąg wektorów zbiegający do tego wektora własnego.
+Wyznaczenie złożoności algorytmu polega na wskazaniu górnego ograniczenia lub oszacowań liczby potrzebnych dodawań i mnożeń skalarów do wykonania danego algorytmu, np. mnożenia macierzy. Standardowe mnożenie dwóch macierzy typu 
+  
+    
+      
+        n
+        ×
+        n
+      
+    
+    {\displaystyle n\times n}
+   z definicji wymaga 
+  
+    
+      
+        
+          n
+          
+            3
+          
+        
+      
+    
+    {\displaystyle n^{3}}
+   mnożeń, gdyż dla każdego z 
+  
+    
+      
+        
+          n
+          
+            2
+          
+        
+      
+    
+    {\displaystyle n^{2}}
+   elementów macierzy potrzeba 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   mnożeń. Klasyczny algorytm Strassena jest efektywniejszy niż opisany wyżej „naiwny” algorytm: potrzebuje jedynie ok. 
+  
+    
+      
+        
+          n
+          
+            2,807
+          
+        
+      
+    
+    {\displaystyle n^{2{,}807}}
+   mnożeń; aby przyspieszyć obliczenia uwzględnia się również cechy i własności urządzenia liczącego. W praktyce często dostępna jest dodatkowa wiedza o postaci macierzy – ważnym przypadkiem są macierze rzadkie, tzn. macierze, których większość elementów jest zerami. Istnieją dla nich specjalnie przystosowane algorytmy, np. metoda gradientu sprzężonego rozwiązywania układów równań liniowych 
+  
+    
+      
+        
+          A
+          X
+        
+        =
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {AX} =\mathbf {B} }
+   dla macierzy rzadkiej 
+  
+    
+      
+        
+          A
+        
+        .
+      
+    
+    {\displaystyle \mathbf {A} .}
+  
+Intuicyjnie algorytm jest numerycznie stabilny, jeśli małe odchylenia argumentów (np. błędy zaokrągleń) nie prowadzą do dużych odchyleń wyników; przykładowo obliczanie macierzy odwrotnej z rozwinięcia Laplace’a, tzn. wzoru 
+  
+    
+      
+        
+          
+            A
+          
+          
+            −
+            1
+          
+        
+        =
+        
+          
+            A
+          
+          
+            
+              D
+            
+          
+        
+        
+          /
+        
+        det
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} ^{-1}=\mathbf {A} ^{\mathrm {D} }/\det \mathbf {A} }
+   (gdzie 
+  
+    
+      
+        
+          
+            A
+          
+          
+            
+              D
+            
+          
+        
+      
+    
+    {\displaystyle \mathbf {A} ^{\mathrm {D} }}
+   oznacza macierz dołączoną do 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+  ), może prowadzić do znaczących błędów zaokrągleń, gdy wyznacznik macierzy jest bardzo mały (co do wartości bezwzględnej). Do oceny uwarunkowania problemów algebry liniowej, jak powyższe obliczanie odwrotności macierzy, stosuje się normy macierzy; przykładowo opracowano algorytmy rozkładu macierzy, które umożliwiają uniknięcie złego uwarunkowania, np. rozkład Schura.
+
+
+== Ujęcie algebraiczne i uogólnienia ==
+
+
+=== Definicja ===
+Niech 
+  
+    
+      
+        m
+        ,
+        n
+      
+    
+    {\displaystyle m,n}
+   będą dodatnimi liczbami całkowitymi, zaś 
+  
+    
+      
+        ⟨
+        c
+        ⟩
+      
+    
+    {\displaystyle \langle c\rangle }
+   oznacza zbiór liczb 
+  
+    
+      
+        {
+        1
+        ,
+        …
+        ,
+        c
+        }
+      
+    
+    {\displaystyle \{1,\dots ,c\}}
+   kolejnych liczb całkowitych, a 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   będzie niepustym zbiorem. Macierzą nazywa się funkcję
+
+  
+    
+      
+        
+          A
+        
+        :
+        ⟨
+        m
+        ⟩
+        ×
+        ⟨
+        n
+        ⟩
+        →
+        X
+        ,
+      
+    
+    {\displaystyle \mathbf {A} \colon \langle m\rangle \times \langle n\rangle \to X,}
+  gdzie 
+  
+    
+      
+        ⟨
+        m
+        ⟩
+        ×
+        ⟨
+        n
+        ⟩
+      
+    
+    {\displaystyle \langle m\rangle \times \langle n\rangle }
+   oznacza iloczyn kartezjański zbiorów 
+  
+    
+      
+        ⟨
+        m
+        ⟩
+      
+    
+    {\displaystyle \langle m\rangle }
+   i 
+  
+    
+      
+        ⟨
+        n
+        ⟩
+        .
+      
+    
+    {\displaystyle \langle n\rangle .}
+   Parę uporządkowaną 
+  
+    
+      
+        (
+        m
+        ,
+        n
+        )
+        ,
+      
+    
+    {\displaystyle (m,n),}
+   oznaczaną zwykle symbolem 
+  
+    
+      
+        m
+        ×
+        n
+        ,
+      
+    
+    {\displaystyle m\times n,}
+   nazywa się typem macierzy 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ,}
+   jej argumenty (elementy dziedziny) – indeksami lub wskaźnikami, zaś wartości (elementy obrazu) – współczynnikami, elementami lub wyrazami; o macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   mówi się też wtedy, że jest określona nad zbiorem 
+  
+    
+      
+        X
+        .
+      
+    
+    {\displaystyle X.}
+   Na podobieństwo ciągów, czy wektorów funkcję 
+  
+    
+      
+        
+          A
+        
+        (
+        i
+        ,
+        j
+        )
+        =
+        
+          a
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle \mathbf {A} (i,j)=a_{ij}}
+   oznacza się zwykle symbolicznie
+
+  
+    
+      
+        
+          A
+        
+        =
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        ]
+        ,
+      
+    
+    {\displaystyle \mathbf {A} =[a_{ij}],}
+  gdzie element 
+  
+    
+      
+        
+          a
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle a_{ij}}
+   i nazywa się wyrazem, współczynnikiem bądź elementem ogólnym macierzy; zwyczajowo pierwszą i drugą współrzędną wyrazu nazywa się odpowiednio jego wierszem i kolumną. Ustalenie pierwszej bądź drugiej współrzędnej funkcji 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   definiuje macierze odpowiednio typu 
+  
+    
+      
+        1
+        ×
+        n
+      
+    
+    {\displaystyle 1\times n}
+   bądź 
+  
+    
+      
+        m
+        ×
+        1
+      
+    
+    {\displaystyle m\times 1}
+   nazywane wierszem bądź kolumną macierzy 
+  
+    
+      
+        
+          A
+        
+        ;
+      
+    
+    {\displaystyle \mathbf {A} ;}
+   dokładniej: 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  -tym wierszem, odpowiednio 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+  -tą kolumną, macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   nazywa się macierze dane wzorami 
+  
+    
+      
+        
+          
+            A
+          
+          
+            i
+          
+        
+        :
+        {
+        i
+        }
+        ×
+        ⟨
+        n
+        ⟩
+        →
+        X
+        ,
+      
+    
+    {\displaystyle \mathbf {A} _{i}\colon \{i\}\times \langle n\rangle \to X,}
+   bądź odpowiednio 
+  
+    
+      
+        
+          
+            A
+          
+          
+            j
+          
+        
+        :
+        ⟨
+        m
+        ⟩
+        ×
+        {
+        j
+        }
+        →
+        X
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ^{j}\colon \langle m\rangle \times \{j\}\to X,}
+   przy czym nie ma ogólnie przyjętej notacji dotyczącej wierszy, czy kolumn danej macierzy – macierze te nazywa się często wektorami wierszowymi bądź kolumnowymi, co wyjaśniono w osobnej sekcji.
+Aby zaznaczyć typ macierzy często dodaje się go wyżej w pewnej formie za nawiasem, np. w indeksie dolnym: 
+  
+    
+      
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        
+          ]
+          
+            m
+            ×
+            n
+          
+        
+      
+    
+    {\displaystyle [a_{ij}]_{m\times n}}
+   lub 
+  
+    
+      
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        
+          ]
+          
+            
+              
+                i
+                =
+                1
+                ,
+                …
+                ,
+                m
+              
+              
+                j
+                =
+                1
+                ,
+                …
+                ,
+                n
+              
+            
+          
+        
+        .
+      
+    
+    {\displaystyle [a_{ij}]_{\underset {j=1,\dots ,n}{i=1,\dots ,m}}.}
+   Zbiór wszystkich macierzy typu 
+  
+    
+      
+        m
+        ×
+        n
+      
+    
+    {\displaystyle m\times n}
+   nad zbiorem 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   oznacza się symbolicznie 
+  
+    
+      
+        
+          
+            M
+          
+          
+            m
+            ×
+            n
+          
+        
+        (
+        X
+        )
+        ,
+      
+    
+    {\displaystyle \mathrm {M} _{m\times n}(X),}
+   czy 
+  
+    
+      
+        
+          
+            M
+            a
+            t
+          
+          
+            m
+            ×
+            n
+          
+        
+        (
+        X
+        )
+        ,
+      
+    
+    {\displaystyle \mathrm {Mat} _{m\times n}(X),}
+   opuszczając niekiedy w typ macierzy lub zbiór jej współczynników, jeśli są znane z kontekstu lub 
+  
+    
+      
+        
+          X
+          
+            m
+            ×
+            n
+          
+        
+        ,
+        
+          X
+          
+            m
+          
+        
+        
+          
+
+          
+          
+            n
+          
+        
+        ;
+      
+    
+    {\displaystyle X^{m\times n},X^{m}{}_{n};}
+   w szczególności 
+  
+    
+      
+        
+          X
+          
+            1
+          
+        
+        
+          
+
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle X^{1}{}_{n}}
+   oraz 
+  
+    
+      
+        
+          X
+          
+            m
+          
+        
+        
+          
+
+          
+          
+            1
+          
+        
+      
+    
+    {\displaystyle X^{m}{}_{1}}
+   utożsamia się z przestrzeniami współrzędnych 
+  
+    
+      
+        
+          X
+          
+            n
+          
+        
+      
+    
+    {\displaystyle X_{n}}
+   oraz 
+  
+    
+      
+        
+          X
+          
+            m
+          
+        
+      
+    
+    {\displaystyle X^{m}}
+   wektorów wierszowych i kolumnowych (w tej notacji łatwiej śledzić wymiar przestrzeni przy przekształceniach, jednak jest ona niezgodna z notacją potęgową iloczynu kartezjańskiego dla przestrzeni).
+
+
+=== Klasy macierzy a wybór bazy ===
+W zbiorze macierzy 
+  
+    
+      
+        
+          
+            M
+            a
+            t
+          
+          
+            m
+            ×
+            n
+          
+        
+      
+    
+    {\displaystyle \mathrm {Mat} _{m\times n}}
+   można wprowadzić wiele różnych relacji równoważności dzielących ten zbiór na rozłączne klasy:
+
+równość, 
+  
+    
+      
+        
+          A
+        
+        =
+        
+          B
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} =\mathbf {B} ,}
+   definiowana wzorem 
+  
+    
+      
+        
+          a
+          
+            i
+            j
+          
+        
+        =
+        
+          b
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle a_{ij}=b_{ij}}
+   dla wszystkich 
+  
+    
+      
+        i
+        ,
+        j
+        ;
+      
+    
+    {\displaystyle i,j;}
+  
+podobieństwo, 
+  
+    
+      
+        
+          A
+        
+        ∼
+        
+          B
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} \sim \mathbf {B} ,}
+   mające miejsce wtedy i tylko wtedy, gdy istnieje macierz odwracalna 
+  
+    
+      
+        
+          P
+        
+      
+    
+    {\displaystyle \mathbf {P} }
+   spełniająca 
+  
+    
+      
+        
+          
+            P
+          
+          
+            −
+            1
+          
+        
+        
+          A
+          P
+        
+        =
+        
+          B
+        
+        ;
+      
+    
+    {\displaystyle \mathbf {P} ^{-1}\mathbf {AP} =\mathbf {B} ;}
+  
+przystawanie, kongruencja, sprzężenie, 
+  
+    
+      
+        
+          A
+        
+        ≅
+        
+          B
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} \cong \mathbf {B} ,}
+   dane warunkiem istnienia takiej macierzy odwracalnej 
+  
+    
+      
+        
+          P
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {P} ,}
+   dla której 
+  
+    
+      
+        
+          
+            P
+          
+          
+            
+              T
+            
+          
+        
+        
+          A
+          P
+        
+        =
+        
+          B
+        
+        ;
+      
+    
+    {\displaystyle \mathbf {P} ^{\mathrm {T} }\mathbf {AP} =\mathbf {B} ;}
+  
+równoważność, 
+  
+    
+      
+        
+          A
+        
+        ≃
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {A} \simeq \mathbf {B} }
+   zachodząca wtedy i tylko wtedy, gdy istnieją macierze odwracalne 
+  
+    
+      
+        
+          P
+        
+        ,
+        
+          Q
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {P} ,\mathbf {Q} ,}
+   że 
+  
+    
+      
+        
+          
+            P
+          
+          
+            −
+            1
+          
+        
+        
+          A
+          Q
+        
+        =
+        
+          B
+        
+        ;
+      
+    
+    {\displaystyle \mathbf {P} ^{-1}\mathbf {AQ} =\mathbf {B} ;}
+  
+równoważność względem operacji elementarnych na wierszach (odp. kolumnach) lub krótko: równoważność elementarna (zwykle dla operacji na wierszach), określona wymaganiem istnienia skończonej liczby operacji elementarnych na wierszach (odp. kolumnach), które przekształcałyby daną macierz w drugąNa relację podobieństwo, czy przystawania można nakładać dodatkowe warunki, np. wymagać, by macierze 
+  
+    
+      
+        
+          P
+        
+      
+    
+    {\displaystyle \mathbf {P} }
+   i 
+  
+    
+      
+        
+          Q
+        
+      
+    
+    {\displaystyle \mathbf {Q} }
+   były ortogonalne (podobieństwo/przystawanie ortogonalne, równoważność ortogonalna), czy unitarne (podobieństwo/przystawanie unitarne, równoważność unitarna). Podobieństwo macierzy pociąga ich równoważność. Dwie macierze są równoważne wtedy i tylko wtedy, gdy ich rzędy są równe. Macierze równoważne elementarnie zachowują zbiór rozwiązań układów równań liniowych (równoważność względem operacji na kolumnach zachowuje dualny do danego układ równań liniowych); dla macierzy nad dobrymi strukturami (np. ciałem, a nawet pierścieniem ideałów głównych) elementarna równoważność pokrywa się z równoważnością.
+
+W ogólności macierz może reprezentować przekształcenie liniowe między dowolnymi przestrzeniami liniowymi skończonego wymiaru z ustalonymi bazami, czyli poprzez wybranie w nich „układów współrzędnych”, tzn. wskazanie izomorfizmów dziedziny i przeciwdziedziny z odpowiednimi przestrzeniami współrzędnych. Otóż przekształcenie liniowe 
+  
+    
+      
+        
+          T
+        
+      
+    
+    {\displaystyle \mathrm {T} }
+   przestrzeni liniowej 
+  
+    
+      
+        V
+      
+    
+    {\displaystyle V}
+   wymiaru 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   w przestrzeń liniową 
+  
+    
+      
+        W
+      
+    
+    {\displaystyle W}
+   wymiaru 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   z bazami odpowiednio 
+  
+    
+      
+        A
+        =
+        (
+        
+          
+            a
+          
+          
+            j
+          
+        
+        
+          )
+          
+            j
+          
+        
+      
+    
+    {\displaystyle A=(\mathbf {a} _{j})_{j}}
+   oraz 
+  
+    
+      
+        B
+        =
+        (
+        
+          
+            b
+          
+          
+            i
+          
+        
+        
+          )
+          
+            i
+          
+        
+      
+    
+    {\displaystyle B=(\mathbf {b} _{i})_{i}}
+   może być opisane dla każdego 
+  
+    
+      
+        j
+        =
+        1
+        ,
+        …
+        ,
+        n
+      
+    
+    {\displaystyle j=1,\dots ,n}
+   wzorem
+
+  
+    
+      
+        
+          T
+        
+        (
+        
+          
+            a
+          
+          
+            j
+          
+        
+        )
+        =
+        
+          ∑
+          
+            i
+            =
+            1
+          
+          
+            m
+          
+        
+        
+          t
+          
+            i
+            j
+          
+        
+        
+          
+            b
+          
+          
+            i
+          
+        
+        ,
+      
+    
+    {\displaystyle \mathrm {T} (\mathbf {a} _{j})=\sum _{i=1}^{m}t_{ij}\mathbf {b} _{i},}
+  a więc poprzez zapisanie w macierzy 
+  
+    
+      
+        
+          
+            T
+          
+          
+            A
+          
+          
+            B
+          
+        
+        =
+        [
+        
+          t
+          
+            i
+            j
+          
+        
+        ]
+      
+    
+    {\displaystyle \mathbf {T} _{A}^{B}=[t_{ij}]}
+   kolumnowo obrazów wektorów bazy 
+  
+    
+      
+        A
+      
+    
+    {\displaystyle A}
+   w bazie 
+  
+    
+      
+        B
+        .
+      
+    
+    {\displaystyle B.}
+  
+Przynależność macierzy do ustalonej klasy oznacza, iż przedstawienia we współrzędnych (wyrażone za pomocą macierzy) danego rodzaju przekształceń są niezależne od wyboru bazy: macierze danego przekształcenia liniowego w różnych bazach mogą być różne, jednak zawsze są równoważne; podobnie ma się rzecz z endomorfizmami liniowymi przestrzeni liniowej z ustaloną bazą – macierze kwadratowe danego endomorfizmu są do siebie podobne; wreszcie wybór bazy dla przestrzeni liniowej w przypadku form dwuliniowych (często symetrycznych bądź hermitowskich form kwadratowych) umożliwia zapisanie ich w postaci macierzy kwadratowych (symetrycznych bądź hermitowskich), przy czym macierze tej samej formy są przystające (podobnie ma się rzecz z formami i macierzami antysymetrycznymi). Wyznacznik i wartości własne macierzy równoważnych są równe, zatem są one niezmiennikami przekształceń liniowych; twierdzenie Sylvestera o bezwładności form kwadratowych mówi, iż liczba oraz znaki wartości własnych macierzy przystających o rzeczywistych współczynnikach są równe, co oznacza, że są one niezmiennikami rzeczywistych form kwadratowych (symetrycznych form dwuliniowych). We wszystkich przypadkach macierze 
+  
+    
+      
+        
+          P
+        
+        ,
+        
+          Q
+        
+      
+    
+    {\displaystyle \mathbf {P} ,\mathbf {Q} }
+   pełnią rolę macierzy zmiany bazy (tzw. „macierze przejścia” z jednej bazy do innej).
+
+
+=== Rozkłady macierzy ===
+Wspomniana w sekcji Symetria i określoność diagonalizacja będąca przedstawieniem macierzy w postaci macierzy diagonalnej (podobnej do danej, zob. poprzednią sekcję) jest w istocie jedną z wielu innych metod rozkładów macierzy, czyli przekształcania macierzy do przystępniejszych postaci (nazywanych zbiorczo postaciami normalnymi bądź kanonicznymi); zasadniczą cechą tych rozkładów jest zachowywanie pewnych własności danych macierzy, np. wyznacznika, rzędu, czy odwrotności, które łatwo odczytać z uzyskanej postaci bądź możliwość algorytmicznego uproszczenia konkretnych operacji na macierzach określonego rodzaju.
+Rozkład LU macierzy polega na przedstawieniu jej w postaci iloczynu macierzy trójkątnych: dolnej (
+  
+    
+      
+        
+          L
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {L} ,}
+   od ang. lower) i górnej (
+  
+    
+      
+        
+          U
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {U} ,}
+   od ang. upper). Wyznaczenie tego rozkładu znacząco upraszcza rozwiązywanie układów równań liniowych za pomocą tzw. podstawień w przód i wstecz; podobnie łatwo uzyskać z tej postaci odwrotność macierzy trójkątnych. Pokrewnym poprzedniemu algorytmem jest eliminacja Gaussa: przekształca daną macierz do postaci schodkowej. Obie metody można opisać za pomocą składania danej macierzy przez odpowiednie macierze elementarne odpowiadające permutacjom wierszy i dodawaniu wielokrotności danego wiersza do innego. Rozkład według wartości osobliwych wyraża dowolną macierz jako iloczyn 
+  
+    
+      
+        
+          
+            U
+            D
+            V
+          
+          
+            ⋆
+          
+        
+      
+    
+    {\displaystyle \mathbf {UDV} ^{\star }}
+   trzech macierzy: unitarnych 
+  
+    
+      
+        
+          U
+        
+        ,
+        
+          V
+        
+      
+    
+    {\displaystyle \mathbf {U} ,\mathbf {V} }
+   oraz diagonalnej 
+  
+    
+      
+        
+          D
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {D} ,}
+   gdzie 
+  
+    
+      
+        
+          
+            V
+          
+          
+            ⋆
+          
+        
+      
+    
+    {\displaystyle \mathbf {V} ^{\star }}
+   oznacza macierz sprzężoną hermitowsko (w przypadku zespolonym; przestawioną w przypadku rzeczywistym) do 
+  
+    
+      
+        
+          V
+        
+        .
+      
+    
+    {\displaystyle \mathbf {V} .}
+  
+
+Rozkład według wartości własnych bądź diagonalizacja to rozkład danej macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   na iloczyn 
+  
+    
+      
+        
+          
+            V
+            D
+            V
+          
+          
+            −
+            1
+          
+        
+      
+    
+    {\displaystyle \mathbf {VDV} ^{-1}}
+   macierzy diagonalnej 
+  
+    
+      
+        
+          D
+        
+      
+    
+    {\displaystyle \mathbf {D} }
+   i odwracalnej 
+  
+    
+      
+        
+          V
+        
+      
+    
+    {\displaystyle \mathbf {V} }
+   (macierz, którą można przedstawić w tej postaci nazywa się diagonalizowalną). Ogólną metodą rozkładu, która jest możliwa do przeprowadzenia dla dowolnej macierzy, jest rozkład Jordana przekształcający daną macierz do postaci (normalnej) Jordana, tzn. macierzy, której jedynymi niezerowymi elementami są znajdujące się na głównej przekątnej wartości własne 
+  
+    
+      
+        
+          λ
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          λ
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \lambda _{1},\dots ,\lambda _{n}}
+   macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   oraz być może elementy jednostkowe znajdujące się na nadprzekątnej głównej (zob. rysunek obok). W rozkładzie według wartości własnych 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  -tą potęgę macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   (tzn. 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  -krotne mnożenie macierzy przez siebie) można obliczyć według wzoru:
+
+  
+    
+      
+        
+          
+            A
+          
+          
+            n
+          
+        
+        =
+        
+          
+            (
+            
+              
+                V
+                D
+                V
+              
+              
+                −
+                1
+              
+            
+            )
+          
+          
+            n
+          
+        
+        =
+        
+          
+            V
+            D
+            V
+          
+          
+            −
+            1
+          
+        
+        …
+        
+          
+            V
+            D
+            V
+          
+          
+            −
+            1
+          
+        
+        =
+        
+          V
+        
+        
+          
+            D
+          
+          
+            n
+          
+        
+        
+          
+            V
+          
+          
+            −
+            1
+          
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ^{n}=\left(\mathbf {VDV} ^{-1}\right)^{n}=\mathbf {VDV} ^{-1}\dots \mathbf {VDV} ^{-1}=\mathbf {V} \mathbf {D} ^{n}\mathbf {V} ^{-1},}
+  a potęgę macierzy diagonalnej oblicza się, podnosząc do potęgi elementy z jej przekątnej głównej – jest to znacznie prostsza operacja niż potęgowanie macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   w postaci wyjściowej. Potęgowanie macierzy jest umożliwia zdefiniowanie eksponenty macierzy 
+  
+    
+      
+        exp
+        ⁡
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \exp \mathbf {A} ,}
+   która podobnie do eksponenty rzeczywistej czy zespolonej znajduje wiele zastosowań: rozwiązywanie liniowych równań różniczkowych, obliczanie logarytmów macierzy, czy ich pierwiastków.
+
+
+=== Współczynniki, algebra i grupy macierzy ===
+Choć w definicji zbiór współczynników nie ma żadnej wyróżnionej struktury, to moc zastosowań metod macierzowych wynika z dodatkowej struktury algebraicznej określonej w tym zbiorze, która umożliwia zdefiniowanie podstawowych działań na macierzach, co skutkuje wprowadzeniem konkretnej struktury algebraicznej w zbiorze macierzy ustalonego typu, czy rodzaju. W artykule skupiono się na ciałach (którymi są np. zbiór liczb rzeczywistych, czy zespolonych), choć uprawianie algebry liniowej za pomocą teorii macierzy możliwe jest już w przypadku zastosowania pierścieni (np. zbioru liczb całkowitych).
+Zbiór macierzy 
+  
+    
+      
+        
+          
+            M
+            a
+            t
+          
+          
+            m
+            ×
+            n
+          
+        
+      
+    
+    {\displaystyle \mathrm {Mat} _{m\times n}}
+   tworzy grupę ze względu na dodawanie macierzy z macierzą zerową 
+  
+    
+      
+        
+          Θ
+        
+      
+    
+    {\displaystyle {\boldsymbol {\Theta }}}
+   złożoną z samych zer pełniącą rolę elementu neutralnego; jeśli dodawanie w zbiorze współczynników jest przemienne (z definicji w ciele lub pierścieniu przemiennym), to jest ona abelowa. Dołączenie mnożenia przez skalary czyni z grupy 
+  
+    
+      
+        
+          
+            M
+            a
+            t
+          
+          
+            m
+            ×
+            n
+          
+        
+      
+    
+    {\displaystyle \mathrm {Mat} _{m\times n}}
+   przestrzeń liniową (wymiaru 
+  
+    
+      
+        m
+        n
+      
+    
+    {\displaystyle mn}
+  ) w przypadku, gdy zbiór skalarów ma strukturę ciała lub moduł (wolny rangi 
+  
+    
+      
+        m
+        n
+      
+    
+    {\displaystyle mn}
+  ), jeśli skalary tworzą pierścień. Mnożenie macierzy nad pierścieniem nieprzemiennym określa się analogicznie jak w przypadku ciał, jednak działanie to nie ma wówczas tak dobrych własności.
+Zbiór macierzy kwadratowych stopnia 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   tworzy nieprzemienny pierścień z jedynką ze względu na mnożenie nazywany pierścieniem macierzy; uwzględniając strukturę przestrzeni liniowej (modułu) macierze kwadratowe danego stopnia są nieprzemienną algebrą nad ciałem z jedynką (nieprzemienną algebrą nad pierścieniem). Macierze odwrotna i odwracalna są elementami odwrotnym i odwracalnym w algebrze macierzy kwadratowych; zbiór macierzy odwracalnych ustalonego stopnia tworzy ze względu na mnożenie macierzy ogólną lub pełną grupę liniową 
+  
+    
+      
+        
+          
+            G
+            L
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \mathrm {GL} _{n}}
+   generowaną przez macierze elementarne. Grupami macierzowymi nazywa się właśnie podgrupy ogólnej grupy liniowej (z działaniem mnożenia); jest nią np. szczególna lub specjalna grupa liniowa 
+  
+    
+      
+        
+          
+            S
+            L
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \mathrm {SL} _{n}}
+   składająca się z macierzy odwracalnych o wyznaczniku jednostkowym (podgrupa normalna generowana przez operację elementarną dodawania wiersza pomnożonego przez odwracalną liczbę do innego w przypadku ciał). Każda grupa skończona jest izomorficzna z grupą macierzową, można się o tym przekonać, rozpatrując reprezentację regularną grupy symetrycznej. Ogólne grupy można badać za pomocą dobrze znanych grup macierzy, które zostały dość dobrze poznane dzięki teorii reprezentacji.
+Jeżeli pierścień współczynników macierzy kwadratowej jest przemienny, to możliwe jest zdefiniowanie jej wyznacznika. Niezerowość wyznacznika dla macierzy określonych nad ciałami należy zamienić w przypadku pierścieni na warunek jego odwracalności. Ze wzorów Cramera (własności macierzy dołączonej) wynika, że macierz kwadratowa nad pierścieniem przemiennym jest odwracalna wtedy i tylko wtedy, gdy jest nieosobliwa.
+Nad (przemienną) dziedziną ideałów głównych podmoduł modułu wolnego jest wolny, a jego ranga nie przekracza rangi całego modułu. W związku z tym owocne jest dla macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   typu 
+  
+    
+      
+        m
+        ×
+        n
+      
+    
+    {\displaystyle m\times n}
+   nad dziedziną ideałów głównych 
+  
+    
+      
+        R
+      
+    
+    {\displaystyle R}
+   rozważanie podmodułów modułów 
+  
+    
+      
+        
+          
+            M
+            a
+            t
+          
+          
+            m
+            ×
+            1
+          
+        
+        (
+        R
+        )
+      
+    
+    {\displaystyle \mathrm {Mat} _{m\times 1}(R)}
+   oraz 
+  
+    
+      
+        
+          
+            M
+            a
+            t
+          
+          
+            1
+            ×
+            n
+          
+        
+        (
+        R
+        )
+      
+    
+    {\displaystyle \mathrm {Mat} _{1\times n}(R)}
+   generowanych odpowiednio przez kolumny i wiersze macierzy 
+  
+    
+      
+        
+          A
+        
+        .
+      
+    
+    {\displaystyle \mathbf {A} .}
+   Podmoduły te mają równe rangi, a ich wspólną wartość nazywa się rzędem macierzy 
+  
+    
+      
+        
+          A
+        
+        .
+      
+    
+    {\displaystyle \mathbf {A} .}
+   Rząd 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   jest równy największemu stopniowi jej niezerowego minora i jest równy rzędowi tej samej macierzy nad ciałem ułamków pierścienia 
+  
+    
+      
+        R
+        ;
+      
+    
+    {\displaystyle R;}
+   rząd macierzy nie przekracza liczby jej wierszy i kolumn.
+Jeśli współczynniki należą do ciała liczb rzeczywistych lub zespolonych, to ogólna grupa liniowa ma strukturę grupy Liego (wymiaru równemu stopniowi macierzy w przypadku rzeczywistym i dwukrotnie większemu w przypadku zespolonym), tzn. mnożenie i odwracanie macierzy są ciągłe (w topologii euklidesowej macierzy traktowanych jako „długie” wektory). Ponadto jest otwartą rozmaitością afiniczną w przestrzeni wszystkich macierzy ustalonego stopnia (jej niepustym podzbiorem otwartym w topologii Zariskiego), a nawet rozmaitością różniczkową (tego samego wymiaru). Algebra Liego 
+  
+    
+      
+        
+          
+            
+              g
+              l
+            
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle {\mathfrak {gl}}_{n}}
+   odpowiadająca tej grupie, tzn. struktura oddająca intuicję nieskończenie małych przekształceń tych grup (por. pochodna Liego), składa się ze wszystkich macierzy kwadratowych tego samego stopnia z komutatorem pełniącym rolę nawiasu Liego; algebra Liego 
+  
+    
+      
+        
+          
+            
+              s
+              l
+            
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle {\mathfrak {sl}}_{n}}
+   specjalnej grupy liniowej (będącą podrozmaitością ogólnej grupy liniowej) zawiera wszystkie macierze kwadratowe ustalonego stopnia o zerowym śladzie.
+
+
+=== Macierze nieskończone i puste ===
+Rozpatruje się również macierze o nieskończonej liczbie wierszy i/lub kolumn – formalnie wystarczy, iż dla dowolnych elementów indeksujących wiersze i kolumny istnieje dobrze określony element macierzy (zbiory indeksów nie muszą być nawet podzbiorami liczb naturalnych). Analogicznie jak w przypadku skończonym można zdefiniować dodawanie, odejmowanie, mnożenie przez skalar, czy przestawienie macierzy, choć mnożenie macierzy wymagać może określenia nieskończonego sumowania do zdefiniowania elementów iloczynu. Jeśli macierz nieskończona ma opisywać przekształcenie liniowe, to jej wszystkie kolumny muszą mieć skończoną liczbę niezerowych elementów. Wynika to stąd, iż dla macierzy 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   reprezentującej przekształcenie liniowe 
+  
+    
+      
+        
+          A
+        
+        :
+        V
+        →
+        W
+        ,
+      
+    
+    {\displaystyle \mathrm {A} \colon V\to W,}
+   z ustalonymi bazami dla przestrzeni liniowych, każdy wektor przestrzeni może być zapisany jednoznacznie jako (skończona) kombinacja liniowa wektorów bazowych, a więc jako macierz jednokolumnową („wektor kolumnowy”) 
+  
+    
+      
+        
+          X
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {X} ,}
+   w której tylko skończenie wiele elementów jest różnych od zera. Wówczas kolumny 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   zawierają kolejne obrazy w przekształceniu 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathrm {A} }
+   macierzy jednokolumnowych odpowiadających obrazom wektorów bazowych przestrzeni 
+  
+    
+      
+        V
+      
+    
+    {\displaystyle V}
+   w bazie przestrzeni 
+  
+    
+      
+        W
+        ,
+      
+    
+    {\displaystyle W,}
+   co ma sens wyłącznie wtedy, gdy kolumny te mają skończenie wiele niezerowych elementów. Nie ma jednakże ograniczenia na liczbę wierszy macierzy 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ,}
+   otóż w iloczynie 
+  
+    
+      
+        
+          A
+          X
+        
+      
+    
+    {\displaystyle \mathbf {AX} }
+   pojawia się tylko skończenie wiele niezerowych współczynników macierzy jednokolumnowej 
+  
+    
+      
+        
+          X
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {X} ,}
+   przez co każdy z elementów tego iloczynu, nawet jeśli jest dany jako nieskończona suma iloczynów, zawiera tylko skończenie wiele różnych od zera elementów, skąd wynika, iż jest on dobrze określony. Co więcej, oznacza to utworzenie kombinacji liniowej kolumn macierzy 
+  
+    
+      
+        
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {A} ,}
+   która efektywnie zawiera wyłącznie skończenie wiele z nich, stąd ponieważ każda kolumna zawiera tylko skończenie wiele niezerowych elementów, to i wynik ma ich tyle. Iloczyn dwóch macierzy danego typu jest również dobrze określony (z zastrzeżeniem równości zbiorów indeksujących odpowiednio wiersze i kolumny tych macierzy), jest tego samego typu i odpowiada złożeniu przekształceń liniowych.
+Macierze nieskończone wykorzystuje się do opisu operatorów na przestrzeni Hilberta, gdzie narzuca się dodatkowe ograniczenia ze względu na zbieżność odpowiednich sum oraz ciągłość przekształceń. Z ogólnego punktu widzenia macierze jednak zaciemniają ogląd – z tego powodu częściej korzysta się z abstrakcyjnych, potężniejszych metod analizy funkcjonalnej.
+Macierz pusta to macierz, której liczba wierszy lub kolumn jest równa zeru. Ułatwiają one rozważania teoretyczne dotyczące zerowej przestrzeni liniowej, np. jeśli macierz 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   jest typu 
+  
+    
+      
+        3
+        ×
+        0
+        ,
+      
+    
+    {\displaystyle 3\times 0,}
+   a macierz 
+  
+    
+      
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {B} }
+   jest typu 
+  
+    
+      
+        0
+        ×
+        3
+        ,
+      
+    
+    {\displaystyle 0\times 3,}
+   to ich iloczyn 
+  
+    
+      
+        
+          A
+          B
+        
+      
+    
+    {\displaystyle \mathbf {AB} }
+   jest macierzą zerową typu 
+  
+    
+      
+        3
+        ×
+        3
+      
+    
+    {\displaystyle 3\times 3}
+   odpowiadającą przekształceniu zerowemu pewnej trójwymiarowej przestrzeni liniowej w siebie, podczas gdy iloczyn 
+  
+    
+      
+        
+          B
+          A
+        
+      
+    
+    {\displaystyle \mathbf {BA} }
+   jest macierzą typu 
+  
+    
+      
+        0
+        ×
+        0.
+      
+    
+    {\displaystyle 0\times 0.}
+   Nie ma ustalonej notacji dotyczącej macierzy pustych, choć większość systemów algebry komputerowej umożliwia ich tworzenie i prowadzenie obliczeń z ich udziałem. Wyznacznik macierzy typu 
+  
+    
+      
+        0
+        ×
+        0
+      
+    
+    {\displaystyle 0\times 0}
+   wynosi jeden, co wynika z obecności iloczynu pustego występującego we wzorze Leibniza na wyznacznik. Wartość ta jest zgodna z faktem służącym często charakteryzacji wyznacznika, iż przekształcenie tożsamościowe z dowolnej skończeniewymiarowej przestrzeni liniowej w siebie ma wyznacznik 1. Istnienie macierzy stopnia zerowego jest niezbędne w rozważaniach teoriokategoryjnych – macierze nad ustalonym ciałem tworzą kategorię addytywną, która musi zawierać obiekt zerowy, tu: macierze puste.
+
+
+=== Tensory ===
+Macierze wielowskaźnikowe to macierze z dowolną liczbą wskaźników indeksujących elementy takiej macierzy – macierze zerowskaźnikowe to opisane wyżej macierze puste, jednowskaźnikowe mogą być utożsamiane z wektorami lub ciągami, dwuwskaźnikowe to macierze opisane w tym artykule (również nieskończone), macierze trójwskaźnikowe można wyobrażać sobie jako uszeregowane w kratkach prostopadłościanu (być może nieskończonego). Formalnie macierz 
+  
+    
+      
+        r
+      
+    
+    {\displaystyle r}
+  -wskaźnikowa o elementach ze zbioru 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   to funkcja 
+  
+    
+      
+        
+          A
+        
+        :
+        ⟨
+        
+          n
+          
+            1
+          
+        
+        ⟩
+        ×
+        ⋯
+        ×
+        ⟨
+        
+          n
+          
+            r
+          
+        
+        ⟩
+        →
+        X
+        .
+      
+    
+    {\displaystyle {\boldsymbol {A}}\colon \langle n_{1}\rangle \times \cdots \times \langle n_{r}\rangle \to X.}
+  
+
+
+== Zastosowania ==
+Macierze znalazły mnóstwo zastosowań, tak w matematyce, jak i w naukach przyrodniczych – niektóre z nich wykorzystują jedynie zwarty sposób zapisu zbioru liczb w postaci tablicy. Przykładowo w teorii gier i ekonomii macierz wypłat koduje wypłatę gracza w zależności od jego wyboru spośród (skończonego) zbioru możliwości. W eksploracji tekstu i automatycznym kompilowaniu tezaurusów korzysta się z macierzy częstości dokument-słowo (albo macierzy częstotliwości słowo-dokument; ang. document-term [frequency] matrix, DTM albo term-document [frequency] matrix, TDM), np. tf-idf, do śledzenia częstości pewnych słów w kilku dokumentach.
+Liczby zespolone można przedstawić za pomocą szczególnych macierzy rzeczywistych typu 
+  
+    
+      
+        2
+        ×
+        2
+      
+    
+    {\displaystyle 2\times 2}
+   za pomocą odwzorowania
+
+  
+    
+      
+        a
+        +
+        b
+        i
+        ↔
+        
+          
+            [
+            
+              
+                
+                  a
+                
+                
+                  −
+                  b
+                
+              
+              
+                
+                  b
+                
+                
+                  a
+                
+              
+            
+            ]
+          
+        
+        ,
+      
+    
+    {\displaystyle a+bi\leftrightarrow {\begin{bmatrix}a&-b\\b&a\end{bmatrix}},}
+  w którym dodawanie i mnożenie liczb zespolonych oraz macierzy odpowiadają sobie wzajemnie. Przykładowo macierze obrotu stopnia 
+  
+    
+      
+        2
+      
+    
+    {\displaystyle 2}
+   odpowiadają mnożeniu przez liczbę zespoloną o module 
+  
+    
+      
+        1
+      
+    
+    {\displaystyle 1}
+   (por. Przekształcenia liniowe). Podobnej interpretacji można dokonać dla kwaternionów.
+Wczesne techniki szyfrowania (np. szyfr Hilla) można opisać za pomocą macierzy, jednakże oznacza to, że kody te są względnie łatwe do złamania (z powodu ich liniowej natury). W grafice komputerowej macierze wykorzystuje się do reprezentowania obiektów oraz ich przekształceń afinicznych – przykładem może być rzut trójwymiarowego obiektu na dwuwymiarowy ekran uwzględniający teoretyczną pozycję obserwatora (kamery). Macierze nad pierścieniami wielomianów są istotnym elementem opisu w teorii sterowania.
+W chemii macierze wykorzystuje się na wiele sposobów – w szczególności, ze względu na wykorzystanie teorii kwantów, do opisu wiązań między cząsteczkami i spektroskopii. Przykładami są macierz nakładania (ang. overlap matrix) i macierz Foka wykorzystywane do rozwiązywania równań Roothaana w celu uzyskania orbitali cząsteczkowych za pomocą metody Hartree’ego-Foka.
+
+
+=== Teoria grafów ===
+
+Jednym z fundamentalnych obiektów teorii grafów jest macierz sąsiedztwa skończonego grafu – zapisana jest w niej informacja o tym, które wierzchołki grafu są połączone krawędzią. Innym sposobem opisu takiego grafu jest macierz incydencji parująca wierzchołki i krawędzie. Macierze zawierające tylko dwie różne wartości (0 i 1 oznaczające przykładowo „tak” i „nie”) nazywa się macierzami logicznymi. Z kolei macierz odległości (lub kosztów) zawiera informację o wzajemnych odległościach krawędzi. Pojęcia te stosuje się do opisu rozmieszczenia (topologii) witryn internetowych połączonych odnośnikami, czy miastami połączonymi za pomocą dróg; jeśli sieć dróg nie jest zbyt gęsta, to macierze są zwykle rzadkie, tzn. zawierają mało niezerowych elementów. Dla tego rodzaju macierzy istnieją odpowiednio przystosowane algorytmy stosowane w teorii sieci.
+
+
+=== Analiza i geometria ===
+Macierz Hessego funkcji różniczkowalnej o wartościach skalarnych (tzw. pola skalarnego) 
+  
+    
+      
+        f
+        :
+        
+          
+            R
+          
+          
+            n
+          
+        
+        →
+        
+          R
+        
+      
+    
+    {\displaystyle f\colon \mathbb {R} ^{n}\to \mathbb {R} }
+   składa się z drugich pochodnych funkcji 
+  
+    
+      
+        f
+      
+    
+    {\displaystyle f}
+   względem osi współrzędnych, tzn.
+
+  
+    
+      
+        
+          
+            H
+          
+          
+            f
+          
+        
+        =
+        
+          
+            [
+            
+              
+                
+                  
+                    ∂
+                    
+                      2
+                    
+                  
+                  f
+                
+                
+                  ∂
+                  
+                    x
+                    
+                      i
+                    
+                  
+                  
+                  ∂
+                  
+                    x
+                    
+                      j
+                    
+                  
+                
+              
+            
+            ]
+          
+          
+            i
+            j
+          
+        
+        .
+      
+    
+    {\displaystyle \mathbf {H} _{f}=\left[{\frac {\partial ^{2}f}{\partial x_{i}\,\partial x_{j}}}\right]_{ij}.}
+  
+Koduje ona informację o lokalnym wzroście funkcji: dla danego punktu krytycznego 
+  
+    
+      
+        
+          x
+        
+        =
+        (
+        
+          x
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          x
+          
+            n
+          
+        
+        )
+        ,
+      
+    
+    {\displaystyle \mathrm {x} =(x_{1},\dots ,x_{n}),}
+   czyli punktu, w którym znikają pierwsze pochodne cząstkowe 
+  
+    
+      
+        ∂
+        f
+        
+          /
+        
+        ∂
+        
+          x
+          
+            i
+          
+        
+      
+    
+    {\displaystyle \partial f/\partial x_{i}}
+   funkcji 
+  
+    
+      
+        f
+        ,
+      
+    
+    {\displaystyle f,}
+   przyjmuje ona minimum lokalne, o ile macierz Hessego jest dodatnio określona (i maksimum lokalne, gdy jest ona ujemnie określona). W celu znalezienia minimów i maksimów funkcji kwadratowych blisko związanych z formami kwadratowymi stowarzyszonymi z macierzami (zob. Określoność) stosuje się programowanie kwadratowe.
+Inną macierzą często stosowaną w ujęciu geometrycznym problemów analitycznych jest macierz Jacobiego przekształcenia różniczkowalnego 
+  
+    
+      
+        
+          f
+        
+        :
+        
+          
+            R
+          
+          
+            n
+          
+        
+        →
+        
+          
+            R
+          
+          
+            m
+          
+        
+        .
+      
+    
+    {\displaystyle \mathrm {f} \colon \mathbb {R} ^{n}\to \mathbb {R} ^{m}.}
+   Jeśli 
+  
+    
+      
+        
+          f
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          f
+          
+            m
+          
+        
+      
+    
+    {\displaystyle f_{1},\dots ,f_{m}}
+   oznaczają składowe 
+  
+    
+      
+        
+          f
+        
+        ,
+      
+    
+    {\displaystyle \mathrm {f} ,}
+   to macierz Jacobiego można zdefiniować jako
+
+  
+    
+      
+        
+          
+            J
+          
+          
+            
+              f
+            
+          
+        
+        =
+        
+          
+            [
+            
+              
+                
+                  ∂
+                  
+                    f
+                    
+                      i
+                    
+                  
+                
+                
+                  ∂
+                  
+                    x
+                    
+                      j
+                    
+                  
+                
+              
+            
+            ]
+          
+          
+            i
+            j
+          
+        
+        .
+      
+    
+    {\displaystyle \mathbf {J} _{\mathrm {f} }=\left[{\frac {\partial f_{i}}{\partial x_{j}}}\right]_{ij}.}
+  Jeśli 
+  
+    
+      
+        n
+        >
+        m
+      
+    
+    {\displaystyle n>m}
+   i rząd macierzy Jacobiego przyjmuje swoją maksymalną wartość 
+  
+    
+      
+        m
+        ,
+      
+    
+    {\displaystyle m,}
+   to z twierdzenia o przekształceniu odwrotnym 
+  
+    
+      
+        
+          f
+        
+      
+    
+    {\displaystyle \mathrm {f} }
+   jest lokalnie odwracalna w tym punkcie.
+Równania różniczkowe cząstkowe można sklasyfikować za pomocą macierzy współczynników operatorów różniczkowych najwyższego rzędu danego równania. Dla eliptycznych równań różniczkowych cząstkowych macierz ta jest dodatnio określona, co ma decydujący wpływ na zbiór możliwych rozwiązań badanego równania.
+Ważną metodą rozwiązywania równań różniczkowych cząstkowych opisujących złożone układy fizyczne jest metoda elementów skończonych, w której rozwiązanie jest przybliżane za pomocą funkcji kawałkami liniowych, gdzie kawałki dostatecznie drobne; metodę można następnie przedstawić w postaci równania macierzowego (zob. też metoda sztywności).
+
+
+=== Rachunek prawdopodobieństwa i statystyka ===
+
+Macierze stochastyczne to macierze, których wiersze odpowiadają wektorom prawdopodobieństwa, tzn. elementy wierszy sumują się do jedności. Macierze stochastyczne definiują łańcuchy Markowa o skończonej liczbie stanów. Wiersz macierzy stochastycznej opisuje rozkład prawdopodobieństwa następnego położenia danej cząstki w stanie odpowiadającym temu wierszowi. Własności łańcucha Markowa takie jak stany pochłaniające, tzn. stany, które dana cząstka kiedyś osiągnie, można odczytać z wartości własnych macierzy przejścia. Ze względu na pokrewieństwo łańcuchów Markowa o skończonej liczbie stanów z grafami o skończonej liczbie wierzchołków do opisu pierwszych stosuje się metody opracowane dla drugich (zob. Teoria grafów).
+W statystyce również korzysta się z wielu rodzajów macierzy – statystyka opisowa zajmuje się przykładowo opisem zbiorów danych, które można często przedstawić w postaci macierzowej przez uprzednie zmniejszenie liczby danych. Macierz kowariancji koduje wariancję wzajemną kilku zmiennych losowych. Kolejnym przykładem jest metoda najmniejszych kwadratów, w której przybliża się skończoną liczbę punktów 
+  
+    
+      
+        (
+        
+          x
+          
+            1
+          
+        
+        ,
+        
+          y
+          
+            1
+          
+        
+        )
+        ,
+        …
+        ,
+        (
+        
+          x
+          
+            k
+          
+        
+        ,
+        
+          y
+          
+            k
+          
+        
+        )
+      
+    
+    {\displaystyle (x_{1},y_{1}),\dots ,(x_{k},y_{k})}
+   funkcją liniową
+
+  
+    
+      
+        
+          y
+          
+            i
+          
+        
+        =
+        a
+        
+          x
+          
+            i
+          
+        
+        +
+        b
+        ,
+        
+        i
+        =
+        1
+        ,
+        …
+        ,
+        k
+        ;
+      
+    
+    {\displaystyle y_{i}=ax_{i}+b,\quad i=1,\dots ,k;}
+  metodę tę można opisać w języku macierzy, opierając się na rozkładzie według wartości osobliwych macierzy.
+Macierze losowe to macierze zawierające liczby losowe podlegające odpowiedniemu rozkładowi prawdopodobieństwa, np. macierzowemu rozkładowi normalnemu. Ich zastosowania wykraczają poza rachunek prawdopodobieństwa – stosuje się je od teorii liczb po fizykę.
+
+
+=== Symetrie i przekształcenia w fizyce ===
+Przekształcenia liniowe i związane z nimi symetrie odgrywają we współczesnej fizyce kluczową rolę. Przykładowo w kwantowej teorii pola cząstki elementarne klasyfikuje się jako reprezentacje grupy Lorentza szczególnej teorii względności, dokładniej: względem ich zachowania w działaniu grupy spinowej. Konkretne reprezentacje, w tym macierze Pauliego, czy ogólniejsze macierze gamma, są integralną częścią opisu fermionów zachowujących się jak spinory. Dla trzech najlżejszych kwarków istnieje grupowa reprezentacja wykorzystująca specjalną grupę unitarną 
+  
+    
+      
+        
+          S
+          U
+        
+        (
+        3
+        )
+        ;
+      
+    
+    {\displaystyle \mathrm {SU} (3);}
+   do obliczeń wykorzystuje się dogodne reprezentacje macierzowe znane jako macierze Gell-Manna, które stosuje się także do opisu grupy cechowania 
+  
+    
+      
+        
+          S
+          U
+        
+        (
+        3
+        )
+      
+    
+    {\displaystyle \mathrm {SU} (3)}
+   tworzącej podstawę współczesnego opisu silnych oddziaływań jądrowych, chromodynamiki kwantowej. Z kolei macierz Cabibbo-Kobayashiego-Maskawy wyraża fakt, iż podstawowe stany kwarków, istotne dla oddziaływań słabych, nie są podstawowymi stanami kwarków definiującymi cząstki z określonymi i różnymi masami, lecz są od nich liniowo zależne.
+
+
+=== Kombinacje liniowe stanów kwantowych ===
+Pierwszy model mechaniki kwantowej (Heisenberg, 1925) przedstawiał operatory tej teorii za pomocą nieskończeniewymiarowych macierzy działających na stanach kwantowych; stąd pierwotna nazwa tej teorii to mechanika macierzowa. Szczególnym przykładem jest macierz gęstości charakteryzująca stan „mieszany” układu kwantowego jako kombinację liniową prostych, „czystych” stanów własnych.
+Inna macierz służy jako kluczowe narzędzie opisu eksperymentów rozpraszania tworzących zrąb eksperymentalnej fizyki cząstek elementarnych: reakcje zderzenia, takie jakie zdarzają się w akceleratorach cząstek, gdzie nieoddziałujące na siebie cząstki pędzą ku sobie i zderzają się na małym obszarze oddziaływania, produkując nowy zestaw nieoddziałujących ze sobą cząstek, mogą być opisane za pomocą iloczynu skalarnego stanów cząsteczek wyjściowych i kombinacji liniowej stanów cząsteczek wejściowych. Kombinacja liniowa jest dana w postaci macierzy rozpraszania znanej także jako macierz S, która koduje wszystkie informacje o możliwych oddziaływaniach między cząstkami.
+
+
+=== Drgania swobodne ===
+W fizyce macierze stosuje się również do opisu liniowo sprzężonych układów harmonicznych. Równania ruchu takich układów można opisać za pomocą macierzy, gdzie macierz masy przemnożona przez uogólnioną prędkość daje wyraz kinetyczny, a macierz siły przemnożona przez macierz przesunięcia (odpowiadającą wektorowi przesunięcia) charakteryzuje interakcje. Najlepszą metodą uzyskiwania rozwiązań jest wyznaczenie wektorów własnych układu, jego drgań swobodnych, poprzez diagonalizację równania macierzowego. Techniki tego rodzaju są istotne, gdy w grę wchodzi wewnętrzna dynamika cząsteczek: drgania wewnętrzne układu składającego się ze wzajemnie związanych atomów. Wykorzystuje się je również do opisu drgań mechanicznych i oscylacji w obwodach elektrycznych.
+
+
+=== Optyka geometryczna ===
+W optyce geometrycznej, która z natury jest teorią aproksymatywną, zaniedbuje się falową naturę światła – w modelu tym promienie świetlne rozchodzą się po prostych. Jeśli ugięcie światła przez dany przyrząd optyczny nie jest duże, działanie soczewki czy zwierciadła można wyrazić za pomocą mnożenia macierzy odpowiadającej wektorowi o dwu składowych przez macierz układu optycznego typu 
+  
+    
+      
+        2
+        ×
+        2
+      
+    
+    {\displaystyle 2\times 2}
+   nazywaną macierzą ABCD: elementami macierzy odpowiadającej wektorowi są nachylenie promienia i jego odległość od osi optycznej, macierz kwadratowa koduje z kolei własności urządzenia optycznego. W istocie wyróżnia się dwa rodzaje macierzy, tj. macierz załamania (lub refrakcji) opisująca załamanie na powierzchni soczewki oraz macierz przesunięcia (lub translacji), która opisuje przesunięcie płaszczyzny odniesienia do kolejnej płaszczyzny załamania, której opisem jest kolejna macierz załamania. Dzięki temu układ optyczny złożony z kombinacji soczewek i/lub zwierciadeł można opisać za pomocą macierzy będącej iloczynem macierzy elementów tego układu.
+
+
+=== Elektronika ===
+Tradycyjna analiza obwodów elektrycznych prowadzi do układów równań liniowych, które mogą być opisane za pomocą macierzy (np. metoda prądów oczkowych, czy metoda napięć/potencjałów węzłowych).
+Zachowanie wielu elementów elektronicznych może być opisane za pomocą macierzy: niech 
+  
+    
+      
+        
+          A
+        
+      
+    
+    {\displaystyle \mathbf {A} }
+   oznacza macierz typu 
+  
+    
+      
+        2
+        ×
+        1
+        ,
+      
+    
+    {\displaystyle 2\times 1,}
+   którego pierwszym elementem jest napięcie 
+  
+    
+      
+        
+          v
+          
+            1
+          
+        
+        ,
+      
+    
+    {\displaystyle v_{1},}
+   a drugą natężenie 
+  
+    
+      
+        
+          i
+          
+            1
+          
+        
+      
+    
+    {\displaystyle i_{1}}
+   wejściowe tego elementu, zaś 
+  
+    
+      
+        
+          B
+        
+      
+    
+    {\displaystyle \mathbf {B} }
+   będzie macierzą tego samego typu z kolejnymi elementami napięcia 
+  
+    
+      
+        
+          v
+          
+            2
+          
+        
+      
+    
+    {\displaystyle v_{2}}
+   i natężenia 
+  
+    
+      
+        
+          i
+          
+            1
+          
+        
+      
+    
+    {\displaystyle i_{1}}
+   wyjściowego elementu. Zachowanie elementu elektronicznego można opisać wzorem 
+  
+    
+      
+        
+          B
+        
+        =
+        
+          H
+          A
+        
+        ,
+      
+    
+    {\displaystyle \mathbf {B} =\mathbf {HA} ,}
+   gdzie 
+  
+    
+      
+        
+          H
+        
+      
+    
+    {\displaystyle \mathbf {H} }
+   jest macierzą typu 
+  
+    
+      
+        2
+        ×
+        2
+      
+    
+    {\displaystyle 2\times 2}
+   zawierającą impedancję (zawadę) i admitancję (drożność) kolejno jako elementy antyprzekątnej głównej i dwa elementy bezwymiarowe na przekątnej głównej. Rozwiązanie obwodu sprowadza się wówczas do mnożenia macierzy.
+
+
+== Historia ==
+
+
+=== Prekursorzy ===
+Za pierwsze macierze można uważać kwadraty magiczne 
+  
+    
+      
+        3
+        ×
+        3
+        ,
+      
+    
+    {\displaystyle 3\times 3,}
+   które w literaturze chińskiej pojawiają się już ok. 650 p.n.e. Kwadraty magiczne były znane także arabskim matematykom, prawdopodobnie już w VII wieku, kiedy Arabowie podbili północno-zachodnie części subkontynentu indyjskiego, przejmując zdobycze matematyki i astronomii hinduskiej – być może idea ta dotarła do nich z Chin. Pierwsze kwadraty magiczne rzędu 5 i 6 pojawiły się w Encyklopedii Bractwa Czystości (arab. رسائل أخوان الصفا و خلان الوفا) z Bagdadu około 983 roku. Prostsze kwadraty magiczne były znane wielu wcześniejszym matematykom arabskim.
+Powstały między III wiekiem p.n.e. a II wiekiem n.e. traktat Dziewięć rozdziałów o sztuce matematyki (Jiu Zhang Suan Shu) jest pierwszym zanotowanym przypadkiem użycia macierzy do rozwiązania układów równań liniowych W rozdziale siódmym, Zbyt dużo i nie wystarczająco, po raz pierwszy wprowadzono koncepcję wyznacznika, przeszło 1000 lat przed jego publikacją przez Kōwę Sekiego w 1683 roku i Gottfrieda Leibniza w 1693 roku. Gabriel Cramer opublikował swoje wzory dające pełny algorytm rozwiązywania układów równań liniowych dopiero w 1750 roku.
+
+
+=== Właściwe pojęcie ===
+Wczesna teoria macierzy bardziej niż na same macierze kładła nacisk na wyznaczniki – niezależne pojęcie macierzy bliskie współczesnemu pojawiło się dopiero w 1858 roku w pracy Arthura Cayleya „Pamiętnik o teorii macierzy” (Memoir on the theory of matrices). Słowo „macierz” (łac. matrix – samica rozpłodowa, roślina macierzysta; od matr-, mater – matka; niegdyś właśnie „macierz”) ukuł James Joseph Sylvester, który macierz rozumiał jako obiekt dający wyznaczniki znane dzisiaj jako minory (zob. Wyznacznik) W pracy z 1851 roku Sylvester tłumaczy:
+
+„W poprzednich pracach zdefiniowałem «Macierz» jako prostokątną tablicę wyrazów, z której jak z łona jednego rodzica wyłonić można przeróżne układy wyznaczników”Badania nad wyznacznikami rozpoczęto z kilku powodów.
+
+Problemy teorii liczb doprowadziły Carla Friedricha Gaussa do związania współczynników form kwadratowych, tzn. wyrażeń postaci 
+  
+    
+      
+        
+          x
+          
+            2
+          
+        
+        +
+        x
+        y
+        −
+        2
+        
+          y
+          
+            2
+          
+        
+        ,
+      
+    
+    {\displaystyle x^{2}+xy-2y^{2},}
+   i trójwymiarowych przekształceń liniowych z macierzami.
+Gotthold Eisenstein rozwinął te pojęcia w dalszym stopniu, w tym fakt, iż (w języku współczesnym) iloczyny macierzy nie są przemienne.
+Augustin Cauchy jako pierwszy udowodnił ogólne twierdzenia o wyznacznikach, korzystając z następującej definicji wyznacznika macierzy 
+  
+    
+      
+        
+          A
+        
+        =
+        [
+        
+          a
+          
+            i
+            j
+          
+        
+        ]
+        
+          :
+        
+      
+    
+    {\displaystyle \mathbf {A} =[a_{ij}]{:}}
+   zastąp w wielomianie 
+  
+    
+      
+        
+          a
+          
+            1
+          
+        
+        …
+        
+          a
+          
+            n
+          
+        
+        
+          ∏
+          
+            i
+            <
+            j
+          
+        
+        (
+        
+          a
+          
+            j
+          
+        
+        −
+        
+          a
+          
+            i
+          
+        
+        )
+      
+    
+    {\displaystyle a_{1}\dots a_{n}\prod _{i<j}(a_{j}-a_{i})}
+   potęgi 
+  
+    
+      
+        
+          a
+          
+            j
+          
+          
+            k
+          
+        
+      
+    
+    {\displaystyle a_{j}^{k}}
+   wyrazem 
+  
+    
+      
+        
+          a
+          
+            j
+            k
+          
+        
+        ,
+      
+    
+    {\displaystyle a_{jk},}
+   gdzie 
+  
+    
+      
+        ∏
+      
+    
+    {\displaystyle \prod }
+   oznacza iloczyn wskazanych wyrazów. Wykazał on również w 1829 roku, że wartości własne macierzy symetrycznych są rzeczywiste.
+Carl Gustav Jakob Jacobi badał „wyznaczniki funkcyjne”, nazywane później przez Sylvestera wyznacznikami Jacobiego, za pomocą których możliwy jest opis przekształceń geometrycznych na poziomie lokalnym (lub infinitezymalnym).W dziełach Leopolda Kroneckera „Wykłady o teorii wyznaczników” (Vorlesungen über die Theorie der Determinanten) i Karla Weierstrassa „O teorii wyznaczników” (Zur Determinantentheorie), obu opublikowanych w 1903 roku, po raz pierwszy opisano wyznaczniki w sposób aksjomatyczny, w przeciwieństwie do mniej abstrakcyjnego podejścia stosowanego przez Cauchy’ego. Rok ten przyjmuje się jako datę precyzyjnego ustalenia definicji wyznacznika.
+
+
+=== Rozwój teorii ===
+Początkowo wiele twierdzeń udowodniono dla małych macierzy, przykładowo Cayley dowiódł twierdzenie Cayleya-Hamiltona w przypadku macierzy typu 
+  
+    
+      
+        2
+        ×
+        2
+      
+    
+    {\displaystyle 2\times 2}
+   i przez Williama Rowana Hamiltona dla macierzy typu 
+  
+    
+      
+        4
+        ×
+        4.
+      
+    
+    {\displaystyle 4\times 4.}
+   Georg Frobenius, rozwijając teorię form dwuliniowych, uogólnił twierdzenie na macierze dowolnego typu (1898). Także pod koniec XIX wieku Wilhelm Jordan przedstawił metodę rozwiązywania układów równań liniowych znaną dziś jako metoda eliminacji Gaussa-Jordana (jako uogólnienie przypadku szczególnego znanego dziś jako metoda eliminacji Gaussa, przy czym Gauss, którego nazwisko noszą obie procedury, nie wniósł wkładu w rozwój żadnej z nich). Z początkiem XX wieku macierze osiągnęły swoją kluczową pozycję w algebrze liniowej (częściowo dzięki ich wykorzystaniu przy klasyfikacji układów liczb hiperzespolonych w poprzednim stuleciu).
+Powstanie mechaniki macierzowej dzięki wysiłkom Wernera Heisenberga, Maksa Borna i Pascuala Jordana doprowadziły do badań nad macierzami o nieskończonej liczbie wierszy i kolumn. W dalszej kolejności John von Neumann dał matematyczny opis mechaniki kwantowej rozwinąwszy takie pojęcia analizy funkcjonalnej jak operator liniowy na przestrzeniach Hilberta, które zgrubnie rzecz ujmując, odpowiadają przestrzeniom euklidesowym o nieskończenie wielu niezależnych kierunkach.
+
+
+== Inne znaczenia terminu ==
+Samo słowo „macierz” stosowane było w kontekście matematycznym w niestandardowy sposób przynajmniej przez dwóch, ważnych historycznie autorów.
+Bertrand Russell i Alfred North Whitehead w ich Principia Mathematica (1910–1913) wykorzystują słowo „macierz” w kontekście wprowadzonego przez nich aksjomatu redukowalności. Zaproponowali oni ten aksjomat w celu zredukowania dowolnej funkcji do funkcji niższego typu tak, by „na dnie” (typ 0) funkcja była identyczna ze swoim rozszerzeniem:
+
+„Macierzą nazwiemy dowolną funkcję, jakkolwiek wielu zmiennych, która nie wykorzystuje żadnych zmiennych pozornych. Wówczas dowolną możliwą funkcję inna od macierzy można otrzymać za pomocą uogólnienia, tzn. rozpatrzenia sądu zapewniającego, iż rzeczona funkcja jest prawdziwa dla wszystkich możliwych wartości bądź dla pewnej wartości jednego z argumentów pozostały argument lub argumenty pozostają nieokreślone”.Przykładowo funkcja 
+  
+    
+      
+        Φ
+        (
+        x
+        ,
+        y
+        )
+      
+    
+    {\displaystyle \Phi (x,y)}
+   dwóch zmiennych 
+  
+    
+      
+        x
+      
+    
+    {\displaystyle x}
+   i 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+   może być zredukowana do kolekcji funkcji jednej zmiennej, tzn. 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+   poprzez „rozpatrywanie” funkcji wszystkich możliwych wartości „indywiduów” 
+  
+    
+      
+        
+          a
+          
+            i
+          
+        
+      
+    
+    {\displaystyle a_{i}}
+   podstawionych w miejsce zmiennej 
+  
+    
+      
+        x
+        .
+      
+    
+    {\displaystyle x.}
+  
+Uzyskana kolekcja funkcji jednej zmiennej 
+  
+    
+      
+        y
+        ,
+      
+    
+    {\displaystyle y,}
+   tzn. 
+  
+    
+      
+        ∀
+        
+          a
+          
+            i
+          
+        
+        :
+        Φ
+        (
+        
+          a
+          
+            i
+          
+        
+        ,
+        y
+        )
+      
+    
+    {\displaystyle \forall a_{i}\colon \Phi (a_{i},y)}
+   może być zredukowana do „macierzy” wartości „rozpatrując” funkcję dla wszystkich wartości „indywiduów” 
+  
+    
+      
+        
+          b
+          
+            i
+          
+        
+      
+    
+    {\displaystyle b_{i}}
+   wstawionych w miejsce zmiennej 
+  
+    
+      
+        y
+        ,
+      
+    
+    {\displaystyle y,}
+   tzn. 
+  
+    
+      
+        ∀
+        
+          b
+          
+            j
+          
+        
+        
+        ∀
+        
+          a
+          
+            i
+          
+        
+        :
+        Φ
+        (
+        
+          a
+          
+            i
+          
+        
+        ,
+        
+          b
+          
+            j
+          
+        
+        )
+        .
+      
+    
+    {\displaystyle \forall b_{j}\;\forall a_{i}\colon \Phi (a_{i},b_{j}).}
+  
+Alfred Tarski w swoim „Wprowadzeniu do logiki” (Introduction to Logic) z 1946 roku używał słowa „macierz”, mając na myśli tabelę prawdy wykorzystywaną w logice matematycznej.
+
+
+== Zobacz też ==
+spis macierzy
+rachunek macierzowy
+
+
+== Uwagi ==
+
+
+== Przypisy ==
+
+
+== Bibliografia ==
+Grzegorz Banaszak, Wojciech Gajda: Elementy algebry liniowej cz. I. Warszawa: Wydawnictwa Naukowo-Techniczne, 2002. ISBN 83-204-2566-2.
+Grzegorz Banaszak, Wojciech Gajda: Elementy algebry liniowej cz. II. Warszawa: Wydawnictwa Naukowo-Techniczne, 2002. ISBN 83-204-2693-6.
+Israïl Moiseevich Gelfand: Wykłady z algebry liniowej. Lech Kubik (tłum.). PWN, 1974.
+J. Komorowski: Od liczb zespolonych do tensorów, spinorów, algebr Liego i kwadryk. PWN, 1978.
+Andrzej Mostowski, Marceli Stark: Algebra liniowa. PWN, 1975.
+Andrzej Mostowski, Marceli Stark: Algebra wyższa. PWN, 1974.
+
+
+== Linki zewnętrzne ==
+Zbiór tożsamości związanych z macierzami
+Kalkulator macierzy
