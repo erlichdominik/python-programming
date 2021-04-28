@@ -5,6 +5,9 @@ from perceptron.Perceptron import Perceptron
 
 
 class Network:
+    """
+    Simple implementation of One Layer Neural Network based on Perceptron
+    """
     def __init__(self, list_of_input_vectors):
         # input vector: [[1,2,3,4, dec_att], [5,6,7,8, dec_att2],...]
         self.input_vectors: List = list_of_input_vectors
