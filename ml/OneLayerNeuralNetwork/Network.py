@@ -12,7 +12,7 @@ class Network:
         # input vector: [[1,2,3,4, dec_att], [5,6,7,8, dec_att2],...]
         self.input_vectors: List = list_of_input_vectors
         # list of perceptrons used to predict output
-        self.perceptrons: List = self.__init_perceptrons()
+        self.perceptrons: List[Perceptron] = self.__init_perceptrons()
         # list of all decision attributes from input vector
         self.decision_attributes: List = list(_extract_decision_attributes(self.input_vectors))
         self.num_of_perceptrons: int = _get_number_of_perceptrons(self.decision_attributes)
@@ -49,3 +49,5 @@ class Network:
         :param test_set: test set
         :return: None
         """
+        for i in range(self.num_of_perceptrons):
+            self.perceptrons[i].single_predict(test_set)
