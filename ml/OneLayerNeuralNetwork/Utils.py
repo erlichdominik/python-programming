@@ -3,6 +3,7 @@ import unicodedata
 import collections
 import string
 
+
 def _get_number_of_perceptrons(decision_attributes: Sized) -> int:
     """
     :param decision_attributes: List of input vectors with decision attributes as last element
@@ -26,9 +27,13 @@ def __get_att_from_input_vector(input_vec: List) -> Any:
     return input_vec[:-1]
 
 
-# TODO: create functions to transform string into input vector without decision argument
-
 def _transform_str_to_vector_with_da(text: str, name_of_file: str) -> List:
+    """
+
+    :param text: text to transform
+    :param name_of_file: name of decision attribute
+    :return: list with histogram of letters with decision attribute at the end
+    """
     text = _strip_accents(text).lower()
     freq_list = []
     c = collections.Counter(text)
@@ -37,16 +42,26 @@ def _transform_str_to_vector_with_da(text: str, name_of_file: str) -> List:
     freq_list.append(name_of_file)
     return freq_list
 
-
-
-
-# TODO: create function to transform text into input vector with decision argument
-
 def _transform_txt_to_vector_without_da(text: str) -> List:
-    pass
+    """
+
+    :param text: text to transform
+    :return: list from frequency histogram of letters
+    """
+    text = _strip_accents(text).lower()
+    freq_list = []
+    c = collections.Counter(text)
+    for letter in string.ascii_lowercase:
+        freq_list.append(c[letter])
+    return freq_list
 
 
 def _strip_accents(s: str) -> str:
+    """
+
+    :param s: text to transform
+    :return: text with only latins letters
+    """
     return ''.join(c for c in unicodedata.normalize('NFD', s)
                    if unicodedata.category(c) != 'Mn')
 
