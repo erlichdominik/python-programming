@@ -1,3 +1,5 @@
+from typing import List
+
 from utils import _get_matrix, _init_weight_list, _get_len_of_weights, _get_decision_attribute
 
 
@@ -9,31 +11,31 @@ class Perceptron:
         input_vector takes array of arrays of inputs and correct output at last index
         example: [[5.7,2.5,5.0,2.0,Iris-virginica], [5.6,3.0,4.1,1.3,Iris-versicolor]]
         """
-        self._input_vec = input_vector
-        self._weights = _init_weight_list(
+        self._input_vec: List = input_vector
+        self._weights: List = _init_weight_list(
             _get_len_of_weights(input_vector))
-        self._threshold = 0.0
-        self._learning_rate = learning_rate
-        self._output_name_for_one = ""
-        self._output_name_for_zero = ""
+        self._threshold: float = 0.0
+        self._learning_rate: float = learning_rate
+        self._output_name_for_one: str = ""
+        self._output_name_for_zero: str = ""
 
-    def set_threshold(self, threshold):
+    def set_threshold(self, threshold) -> None:
         self._threshold = threshold
 
-    def set_learning_rate(self, learning_rate):
+    def set_learning_rate(self, learning_rate) -> None:
         self._learning_rate = learning_rate
 
-    def set_output_names(self, *, name_for_zero, name_for_one):
+    def set_output_names(self, *, name_for_zero, name_for_one) -> None:
         self._output_name_for_zero = name_for_zero
         self._output_name_for_one = name_for_one
 
-    def set_output_name_for_zero(self, name):
+    def set_output_name_for_zero(self, name) -> None:
         self._output_name_for_zero = name
 
-    def set_output_name_for_one(self, name):
+    def set_output_name_for_one(self, name) -> None:
         self._output_name_for_one = name
 
-    def _predict_output_for_one_row(self, vec):
+    def _predict_output_for_one_row(self, vec) -> float:
         """predict output for single vector
         example: [1,2,3,4]
         """
@@ -49,7 +51,7 @@ class Perceptron:
             __output += self._input_vec[i] + self._weights[i]
         return 1.0 if __output - self._threshold > 0 else 0.0
     '''
-    def __train_weights(self, input_vector, desired_output, prediction):
+    def __train_weights(self, input_vector, desired_output, prediction) -> List:
         __weights = _init_weight_list(
             _get_len_of_weights(self._input_vec)
         )
@@ -57,14 +59,14 @@ class Perceptron:
             __weights[i] = __weights[i] + (desired_output - prediction) * self._learning_rate * input_vector[i]
         return __weights
 
-    def __train_threshold(self, desired_output, prediction):
+    def __train_threshold(self, desired_output, prediction) -> float:
         return self._threshold + (desired_output - prediction) * self._learning_rate * (-1)
 
-    def train(self, num_of_epochs=1):
+    def train(self, num_of_epochs=1) -> None:
         for epoch in range(num_of_epochs):
             self.__delta_rule()
 
-    def set_predict(self, input_set):
+    def set_predict(self, input_set) -> None:
         errors = 0
         for row in input_set:
             prediction = self._predict_output_for_one_row(_get_matrix(row))
@@ -77,7 +79,7 @@ class Perceptron:
                 errors += 1
         print('accuracy: ', 1 - errors / len(input_set))
 
-    def single_predict(self, input_vector):
+    def single_predict(self, input_vector) -> None:
         """input vector should be the same as in training set without decision argument"""
         for i in range(len(input_vector)):
             input_vector[i] = float(input_vector[i])
@@ -85,7 +87,7 @@ class Perceptron:
         prediction_output = self._output_name_for_one if prediction == 1 else self._output_name_for_zero
         print('for input:' + str(input_vector) + ' prediction is: ' + prediction_output)
 
-    def __delta_rule(self):
+    def __delta_rule(self) -> None:
         __new_weights = _init_weight_list(
             _get_len_of_weights(self._input_vec)
         )
