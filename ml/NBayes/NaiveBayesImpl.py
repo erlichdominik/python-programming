@@ -1,0 +1,2 @@
+from NaiveBayes import *
+
